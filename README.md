@@ -14,8 +14,10 @@ Feel free to connect with me @FlorianRuen for all things tech or just to say hel
 
 ### Talking about Personal Stuff:
 
-- 🛠 &nbsp; I’m currently working with AI, JS, GO, React, Mongo and PostreSQL.
+- 🛠 &nbsp; I’m currently working with AI, JS, GO, React, Mongo and PostgreSQL.
 - 🚀 &nbsp; I’m currently exploring Web3 and smart contracts.
+
+-----
 
 ### Languages and Tools:
 
@@ -35,7 +37,9 @@ Feel free to connect with me @FlorianRuen for all things tech or just to say hel
 
 ![](https://img.shields.io/badge/Cloud-Amazon_web_services-informational?style=flat&logo=amazonaws&&logoColor=white&color=ff6932)
 
-### Projects and Dev Stuffs:
+-----
+
+### Github stats:
 
 
 <div align="center">
