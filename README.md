@@ -5,6 +5,7 @@
 ### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=iampavangandhi.iampavangandhi&style=flat-square&color=0088cc)
 
 I am a Full Stack Developer currently working at [CIDgravity](https://www.cidgravity.com/) as Head of Software Development, a powerful pricing and client management for Filecoin storage providers 🚀
+
 I got an engineering degree in Electronics and industrial computing and I'm passionate about artificial intelligence and tech-focused products that transform the future of work.
 
 Feel free to connect with me @FlorianRuen for all things tech or just to say hello! Let's shape the future of tech together. 🌟
