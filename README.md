@@ -19,32 +19,26 @@ Feel free to connect with me @FlorianRuen for all things tech or just to say hel
 
 -----
 
-### Languages and Tools:
+### Languages and Tools
 
 ![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=ff6932)
 ![](https://img.shields.io/badge/Tools-MongoDB-informational?style=flat&logo=mongodb&&logoColor=white&color=ff6932)
 ![](https://img.shields.io/badge/Tools-Retool-informational?style=flat&logo=retool&logoColor=white&color=ff6932)
 ![](https://img.shields.io/badge/Tools-Gradle-informational?style=flat&logo=gradle&logoColor=white&color=ff6932)
 
-![](https://img.shields.io/badge/Code-Golang-informational?style=flat&logo=go&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Code-Csharp-informational?style=flat&logo=csharp&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Code-ReactJS-informational?style=flat&logo=react&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Code-Golang-informational?style=flat&logo=go&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-Csharp-informational?style=flat&logo=csharp&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-ReactJS-informational?style=flat&logo=react&logoColor=white&color=3b7794)
 
 ![](https://img.shields.io/badge/Editor-IntelliJ_IDEA-informational?style=flat&logo=intellij-idea&logoColor=white&color=ff6932)
 ![](https://img.shields.io/badge/Editor-Visual_studio_code-informational?style=flat&logo=visualstudiocode&logoColor=white&color=ff6932)
 
-![](https://img.shields.io/badge/Cloud-Amazon_web_services-informational?style=flat&logo=amazonaws&&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Cloud-Amazon_web_services-informational?style=flat&logo=amazonaws&&logoColor=white&color=3b7794)
 
 -----
 
-### Github stats:
+### Github stats
 <img height="180em" src="https://github-readme-stats.vercel.app/api?username=FlorianRuen&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true" />
 <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=FlorianRuen&show_icons=true&hide_border=true&layout=compact&langs_count=8"/>
-
-<div align="center">
-  
-### Show some ❤️ by starring some of the repositories!
-
-</div>
