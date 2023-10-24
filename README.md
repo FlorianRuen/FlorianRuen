@@ -1,16 +1,42 @@
-### Hi there 👋
+## Hey there 👋, I'm [Florian!](https://github.com/FlorianRuen/)
 
-<!--
-**FlorianRuen/FlorianRuen** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/florianruen/)
 
-Here are some ideas to get you started:
+### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=iampavangandhi.iampavangandhi&style=flat-square&color=0088cc)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+I am a Full Stack Developer currently working at [CIDgravity](https://www.cidgravity.com/) as Head of Software Development, a powerful pricing and client management for Filecoin storage providers 🚀
+I got an engineering degree in Electronics and industrial computing and I'm passionate about artificial intelligence and tech-focused products that transform the future of work.
+
+Feel free to connect with me @FlorianRuen for all things tech or just to say hello! Let's shape the future of tech together. 🌟
+
+### Talking about Personal Stuff:
+
+- 🛠 &nbsp; I’m currently working with AI, JS, GO, React, Mongo and PostreSQL.
+- 🚀 &nbsp; I’m currently exploring Web3 and smart contracts.
+
+### Languages and Tools:
+
+![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Tools-MongoDB-informational?style=flat&logo=mongodb&&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Tools-Retool-informational?style=flat&logo=retool&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Tools-Gradle-informational?style=flat&logo=gradle&logoColor=white&color=ff6932)
+
+![](https://img.shields.io/badge/Code-Golang-informational?style=flat&logo=go&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Code-Csharp-informational?style=flat&logo=csharp&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Code-ReactJS-informational?style=flat&logo=react&logoColor=white&color=ff6932)
+
+![](https://img.shields.io/badge/Editor-IntelliJ_IDEA-informational?style=flat&logo=intellij-idea&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Editor-Visual_studio_code-informational?style=flat&logo=visualstudiocode&logoColor=white&color=ff6932)
+
+![](https://img.shields.io/badge/Cloud-Amazon_web_services-informational?style=flat&logo=amazonaws&&logoColor=white&color=ff6932)
+
+### Projects and Dev Stuffs:
+
+
+<div align="center">
+  
+### Show some ❤️ by starring some of the repositories!
+
+</div>
