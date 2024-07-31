@@ -1,67 +1,44 @@
-![cv](https://github.com/BartoszJarocki/cv/assets/1017620/79bdb9fc-0b20-4d2c-aafe-0526ad4a71d2)
+## Hey there 👋, I'm [Florian!](https://github.com/FlorianRuen/)
 
-# Minimalist CV [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBartoszJarocki%2Fcv)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/florianruen/)
 
-Simple web app that renders minimalist CV with print-friendly layout.
+### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=iampavangandhi.iampavangandhi&style=flat-square&color=0088cc)
 
-Built with Next.js and shadcn/ui, deployed on Vercel.
+I am a Full Stack Developer currently working at [CIDgravity](https://www.cidgravity.com/) as Head of Software Development, a powerful pricing and client management for Filecoin storage providers 🚀
 
-# Features
 
-- Setup only takes a few minutes [single config file](./src/data/resume-data.tsx)
-- Built using Next.js 14, React, Typescript, Shadcn/ui, TailwindCss
-- Auto generated Layout
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+I got an engineering degree in Electronics and industrial computing and I'm passionate about artificial intelligence and tech-focused products that transform the future of work.
 
-# Getting Started Locally
 
-1. Clone this repository to your local machine:
+Feel free to connect with me @FlorianRuen for all things tech or just to say hello! Let's shape the future of tech together. 🌟
 
-   ```bash
-   git clone https://github.com/BartoszJarocki/cv.git
-   ```
+### Talking about Personal Stuff:
 
-2. Move to the cloned directory
+- 🛠 &nbsp; I’m currently working with AI, JS, GO, React, Mongo and PostgreSQL.
+- 🚀 &nbsp; I’m currently exploring Web3 and smart contracts.
 
-   ```bash
-   cd cv
-   ```
+-----
 
-3. Install dependencies:
+### Languages and Tools
 
-   ```bash
-   yarn install
-   ```
+![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Tools-MongoDB-informational?style=flat&logo=mongodb&&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Tools-Retool-informational?style=flat&logo=retool&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Tools-Gradle-informational?style=flat&logo=gradle&logoColor=white&color=ff6932)
 
-4. Start the local Server:
+![](https://img.shields.io/badge/Code-Golang-informational?style=flat&logo=go&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-Csharp-informational?style=flat&logo=csharp&logoColor=white&color=3b7794)
+![](https://img.shields.io/badge/Code-ReactJS-informational?style=flat&logo=react&logoColor=white&color=3b7794)
 
-   ```bash
-   yarn dev
-   ```
+![](https://img.shields.io/badge/Editor-IntelliJ_IDEA-informational?style=flat&logo=intellij-idea&logoColor=white&color=ff6932)
+![](https://img.shields.io/badge/Editor-Visual_studio_code-informational?style=flat&logo=visualstudiocode&logoColor=white&color=ff6932)
 
-5. Open the [Config file](./src/data/resume-data.tsx) and make changes
+![](https://img.shields.io/badge/Cloud-Amazon_web_services-informational?style=flat&logo=amazonaws&&logoColor=white&color=3b7794)
 
-# Run with Docker
+-----
 
-Build the container
-
-```
-docker compose build
-```
-
-Run the container
-
-```
-docker compose up -d
-```
-
-Stop the Container
-
-```
-docker compose down 
-```
-
-# License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+### Github stats
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=FlorianRuen&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=FlorianRuen&show_icons=true&hide_border=true&layout=compact&langs_count=8"/>
