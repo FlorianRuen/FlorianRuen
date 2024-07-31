@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/command-menu";
 import { Metadata } from "next";
 import { Section } from "@/components/ui/section";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, PhoneIcon, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { RESUME_DATA } from "@/data/resume-data";
 import { ProjectCard } from "@/components/project-card";
@@ -20,7 +20,7 @@ export default function Page() {
       <section className="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex-1 space-y-1.5">
-            <h1 className="text-2xl font-bold">{RESUME_DATA.name}</h1>
+            <h1 className="text-2xl text-accent font-bold">{RESUME_DATA.name}</h1>
             <p className="max-w-md text-pretty font-mono text-sm text-muted-foreground print:text-[12px]">
               {RESUME_DATA.about}
             </p>
@@ -35,6 +35,13 @@ export default function Page() {
               </a>
             </p>
             <div className="flex gap-x-1 pt-1 font-mono text-sm text-muted-foreground print:hidden">
+              <Button variant="secondary" size="sm" asChild>
+                  <a href="https://drive.google.com/file/d/1pA018lkeobcoVi-dnFRbnxKe-I7vsbCQ/view?usp=drive_link">
+                    <Download className="size-4 mr-2" />
+                    Télécharger en PDF
+                  </a>
+                </Button>
+
               {RESUME_DATA.contact.email ? (
                 <Button
                   className="size-8"
@@ -92,28 +99,29 @@ export default function Page() {
             <AvatarFallback>{RESUME_DATA.initials}</AvatarFallback>
           </Avatar>
         </div>
+        
         <Section>
-          <h2 className="text-xl font-bold">About</h2>
-          <p className="text-pretty font-mono text-sm text-muted-foreground print:text-[12px]">
+          <h2 className="text-primary text-xl font-bold">A propos</h2>
+          <p className="text-pretty justify-between font-mono text-sm text-muted-foreground print:text-[12px]">
             {RESUME_DATA.summary}
           </p>
         </Section>
-        <Section>
-          <h2 className="text-xl font-bold">Work Experience</h2>
+
+        <Section className="mt-4">
+          <h2 className="text-primary text-xl font-bold">Expériences professionelles</h2>
           {RESUME_DATA.work.map((work) => {
             return (
               <Card key={work.company}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">
-                      <a className="hover:underline" href={work.link}>
+                      <a className="text-accent hover:underline" href={work.link}>
                         {work.company}
                       </a>
 
                       <span className="inline-flex gap-x-1">
                         {work.badges.map((badge) => (
                           <Badge
-                            variant="secondary"
                             className="align-middle text-xs print:text-[8px] print:leading-tight print:px-1 print:py-0.5"
                             key={badge}
                           >
@@ -123,7 +131,9 @@ export default function Page() {
                       </span>
                     </h3>
                     <div className="text-sm tabular-nums text-gray-500">
-                      {work.start} - {work.end ?? "Present"}
+                      <Badge variant="secondary" className="align-middle text-xs print:text-[8px] print:leading-tight print:px-1 print:py-0.5">
+                        {work.start} - {work.end ?? "Présent"}
+                      </Badge>
                     </div>
                   </div>
 
@@ -138,19 +148,21 @@ export default function Page() {
             );
           })}
         </Section>
+
         <Section>
-          <h2 className="text-xl font-bold">Education</h2>
+          <h2 className="text-primary text-xl font-bold">Diplômes et formations</h2>
           {RESUME_DATA.education.map((education) => {
             return (
               <Card key={education.school}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
-                    <h3 className="font-semibold leading-none">
+                    <h3 className="text-accent font-semibold leading-none">
                       {education.school}
                     </h3>
-                    <div className="text-sm tabular-nums text-gray-500">
+
+                    <Badge variant="secondary" className="align-middle text-xs print:text-[8px] print:leading-tight print:px-1 print:py-0.5">
                       {education.start} - {education.end}
-                    </div>
+                    </Badge>
                   </div>
                 </CardHeader>
                 <CardContent className="mt-2 print:text-[12px]">
@@ -160,8 +172,9 @@ export default function Page() {
             );
           })}
         </Section>
+
         <Section>
-          <h2 className="text-xl font-bold">Skills</h2>
+          <h2 className="text-primary text-xl font-bold">Compétences</h2>
           <div className="flex flex-wrap gap-1">
             {RESUME_DATA.skills.map((skill) => {
               return (
@@ -174,7 +187,7 @@ export default function Page() {
         </Section>
 
         <Section className="print-force-new-page scroll-mb-16">
-          <h2 className="text-xl font-bold">Projects</h2>
+          <h2 className="text-primary text-xl font-bold">Projets et bénévolats</h2>
           <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
             {RESUME_DATA.projects.map((project) => {
               return (
@@ -190,19 +203,6 @@ export default function Page() {
           </div>
         </Section>
       </section>
-
-      <CommandMenu
-        links={[
-          {
-            url: RESUME_DATA.personalWebsiteUrl,
-            title: "Personal Website",
-          },
-          ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-            url: socialMediaLink.url,
-            title: socialMediaLink.name,
-          })),
-        ]}
-      />
     </main>
   );
 }

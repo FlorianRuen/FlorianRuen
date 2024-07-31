@@ -1,35 +1,13 @@
-import {
-  AmbitLogo,
-  BarepapersLogo,
-  BimLogo,
-  CDGOLogo,
-  ClevertechLogo,
-  ConsultlyLogo,
-  EvercastLogo,
-  Howdy,
-  JarockiMeLogo,
-  JojoMobileLogo,
-  Minimal,
-  MobileVikingsLogo,
-  MonitoLogo,
-  NSNLogo,
-  ParabolLogo,
-  TastyCloudLogo,
-  YearProgressLogo,
-} from "@/images/logos";
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
   name: "Florian RUEN",
   initials: "FR",
   location: "Orléans, France",
   locationLink: "https://maps.app.goo.gl/ntqUULunKpJbANGx5",
-  about:
-    "Detail-oriented Full Stack Engineer dedicated to building high-quality products.",
-  summary:
-    "As a Full Stack Engineer, I specialize in taking products from concept to launch. I excel in leading teams and creating environments where individuals perform at their best. Currently, I work mostly with TypeScript, React, Node.js, and GraphQL. I have over 8 years of experience working remotely with companies worldwide.",
+  about: "Entrepreneur et ingénieur informatique passionné, transformant des idées innovantes en produits concrets.",
+  summary: "En tant qu'ingénieur informatique et développeur logiciel, je suis passionné par l'innovation et la transformation numérique. Avec plus de 8 ans d'expérience, je me suis spécialisé dans la conception et le lancement de nouveaux produits dans des environnements technologiques variés et évolutifs. Habitué au télétravail, j'ai collaboré avec des entreprises de toutes tailles, apportant des solutions robustes et innovantes.",
   avatarUrl: "https://avatars.githubusercontent.com/u/13837778?v=4",
-  personalWebsiteUrl: "https://florianruen.fr",
   contact: {
     email: "florian.ruen@gmail.com",
     tel: "+33610556771",
@@ -70,35 +48,29 @@ export const RESUME_DATA = {
     {
       company: "CIDgravity",
       link: "https://cidgravity.com",
-      badges: ["Remote"],
+      badges: [],
       title: "Head of software",
-      logo: ConsultlyLogo,
       start: "2023",
       end: null,
-      description:
-        "Développement d'une solution web3 pour simplifier l'adoptation de l'internet decentralizé. Technologies: React, Go, Python, MongoDB",
+      description: "Développement d'une solution permettant de créer une passerelle vers le web3.0 (stockage de fichiers decentralisé). Technologies utilisées: React, Go, Python, MongoDB",
     },
     {
       company: "Eyes'R",
-      link: "https://eyesr.fr",
-      badges: ["entrepreneur"],
+      link: "https://youtu.be/acfvShQqWko?si=pAX3L_QDqrDQl6di",
+      badges: [],
       title: "CEO & CTO",
-      logo: ParabolLogo,
       start: "2018",
       end: "2023",
-      description:
-        "Fondateur d'une entreprise qui développe un logiciel basé sur l'IA pour prévenir les accidents de travail. Technologies: Java, React, Python, Gradle, PostgreSQL",
+      description: "Fondateur d'une entreprise qui développe un logiciel basé sur l'IA pour prévenir les accidents de travail. Technologies utilisées: Java, React, Python, Gradle, PostgreSQL",
     },
     {
       company: "Forvia Seating",
-      link: "https://www.forvia.com/fr",
-      badges: ["Remote"],
+      link: "https://www.forvia.com",
+      badges: [],
       title: "Ingénieur process (alternance)",
-      logo: ClevertechLogo,
       start: "2015",
       end: "2018",
-      description:
-        "Participation à la création d'une formation soudure, ainsi qu'au développement de logiciels internes de suivi et d'archivage des programmes automates. Technologies: C#",
+      description: "Participation à la création d'une formation soudure, ainsi qu'au développement de logiciels internes de suivi et d'archivage des programmes automates. Technologies utilisées: C#",
     }
   ],
   skills: [
@@ -119,21 +91,37 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
-      title: "Parabol",
+      title: "Viva technology",
       techStack: [
-        "Full Stack Developer",
-        "TypeScript",
-        "React",
-        "Node.js",
-        "GraphQL",
+        "Management",
+        "Bénévolat"
       ],
-      description:
-        "The Agile meeting co-pilot that delivers better meetings with less effort",
-      logo: ParabolLogo,
+      description: "Gestion et management d'une équipe de volontaire lors du salon Viva Technology 2018",
       link: {
-        label: "github.com",
-        href: "https://parabol.co/",
-      },
+        href: undefined
+      }
+    },
+    {
+      title: "CFA UPMC",
+      techStack: [
+        "BDE",
+        "Bénévolat"
+      ],
+      description: "Président du bureau des étudiants (gestion, organisation des évènements et de voyages)",
+      link: {
+        href: undefined
+      }
+    },
+    {
+      title: "Heol",
+      techStack: [
+        "Prototypage",
+        "Java"
+      ],
+      description: "Association spécialisée dans la conception de robot humanoïdes à usage purement éducatif",
+      link: {
+        href: undefined
+      }
     }
   ],
 } as const;
