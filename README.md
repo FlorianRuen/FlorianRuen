@@ -17,6 +17,8 @@ Feel free to connect with me @FlorianRuen for all things tech or just to say hel
 - 🛠 &nbsp; I’m currently working with AI, JS, GO, React, Mongo and PostgreSQL.
 - 🚀 &nbsp; I’m currently exploring Web3 and smart contracts.
 
+[![](https://tokei.rs/b1/github/badges/shields)]()
+
 -----
 
 ### Languages and Tools
