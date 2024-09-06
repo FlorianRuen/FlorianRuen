@@ -17,8 +17,6 @@ Feel free to connect with me @FlorianRuen for all things tech or just to say hel
 - 🛠 &nbsp; I’m currently working with AI, JS, GO, React, Mongo and PostgreSQL.
 - 🚀 &nbsp; I’m currently exploring Web3 and smart contracts.
 
-[![My Awesome Stats](https://awesome-github-stats.azurewebsites.net/user-stats/FlorianRuen?cardType=level&theme=graywhite&preferLogin=false&Background=3B7794&Text=FFFFFF&Title=FFFFFF&Ring=FF6932)](https://git.io/awesome-stats-card)
-
 -----
 
 ### Languages and Tools
@@ -42,5 +40,6 @@ Feel free to connect with me @FlorianRuen for all things tech or just to say hel
 -----
 
 ### Github stats
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=FlorianRuen&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true" />
+[![My Awesome Stats](https://awesome-github-stats.azurewebsites.net/user-stats/FlorianRuen?cardType=level&theme=graywhite&preferLogin=false&Background=3B7794&Text=FFFFFF&Title=FFFFFF&Ring=FF6932)](https://git.io/awesome-stats-card)
+
 <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=FlorianRuen&show_icons=true&hide_border=true&layout=compact&langs_count=8"/>
