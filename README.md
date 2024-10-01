@@ -41,5 +41,3 @@ Feel free to connect with me @FlorianRuen for all things tech or just to say hel
 
 ### Github stats
 [![My Awesome Stats](https://awesome-github-stats.azurewebsites.net/user-stats/FlorianRuen?cardType=level&theme=graywhite&preferLogin=false&Background=3B7794&Text=FFFFFF&Title=FFFFFF&Ring=FF6932)](https://git.io/awesome-stats-card)
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=FlorianRuen&show_icons=true&hide_border=true&layout=compact&langs_count=8"/>
