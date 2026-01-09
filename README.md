@@ -1,10 +1,11 @@
 ## Hey there 👋, I'm [Florian!](https://github.com/FlorianRuen/)
 
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/florianruen/)
+[![OVHcloud](https://img.shields.io/badge/-OVHcloud--000000?style=for-the-badge&logo=OVH&logoColor=white)](https://github.com/ovh)
 
 ### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=iampavangandhi.iampavangandhi&style=flat-square&color=0088cc)
 
-I am a Full Stack Developer currently working at [CIDgravity](https://www.cidgravity.com/) as Head of Software Development, a powerful pricing and client management for Filecoin storage providers 🚀
+I am a Full Stack Developer currently working at [OVHcloud](https://www.ovhcloud.com/fr/) as IT Tech Lead and Software developer, a French cloud computing company 🚀
 
 
 I got an engineering degree in Electronics and industrial computing and I'm passionate about artificial intelligence and tech-focused products that transform the future of work.
