@@ -1,7 +1,7 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
-	"files": { "includes": ["**", "!**/.next", "!**/next-env.d.ts"] },
+	"files": { "includes": ["**", "!**/.next", "!**/next-env.d.ts", "!video/node_modules", "!video/out"] },
 	"formatter": { "enabled": false },
 	"assist": { "actions": { "source": { "organizeImports": "off" } } },
 	"css": { "parser": { "tailwindDirectives": true } },

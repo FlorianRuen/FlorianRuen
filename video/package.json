@@ -1,0 +1,23 @@
+{
+  "name": "resume-video",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "music": "node scripts/make-music.mjs",
+    "studio": "remotion studio",
+    "render": "node scripts/render.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.540",
+    "@remotion/google-fonts": "^4.0.540",
+    "@remotion/renderer": "^4.0.540",
+    "lucide-react": "^1.68.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.540"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}
