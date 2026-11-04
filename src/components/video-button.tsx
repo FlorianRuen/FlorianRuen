@@ -6,18 +6,18 @@ import type { Lang } from "@/lib/i18n";
 import { Button } from "./ui/button";
 
 /**
- * "Watch the 1-min video" button: opens the animated resume (made with
- * Remotion, see /video) in a native <dialog>, so Esc, focus trapping and the
- * backdrop come for free. Nothing is downloaded until the dialog opens
- * (preload="none"), and the video pauses when it closes.
- */
-
-/**
  * Which rendered version to play (files in public/video):
  * "resume-v2" = IDE / CI / Kubernetes take, "resume" = v1 kinetic typography.
  * Switch back to "resume" to roll back.
  */
 const VIDEO = "resume-v2";
+
+/**
+ * "Watch the 1-min video" button: opens the animated resume (made with
+ * Remotion, see /video) in a native <dialog>, so Esc, focus trapping and the
+ * backdrop come for free. Nothing is downloaded until the dialog opens
+ * (preload="none"), and the video pauses when it closes.
+ */
 export function VideoButton({
   lang,
   label,
