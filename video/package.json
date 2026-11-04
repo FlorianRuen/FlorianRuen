@@ -5,7 +5,9 @@
   "scripts": {
     "music": "node scripts/make-music.mjs",
     "studio": "remotion studio",
-    "render": "node scripts/render.mjs"
+    "render": "node scripts/render.mjs",
+    "render:v2": "node scripts/render.mjs --v2",
+    "music:v2": "node scripts/make-music-v2.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.540",
