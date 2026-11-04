@@ -37,6 +37,10 @@ export const UI = {
     switchLangLabel: "View in English",
     toggleTheme: "Changer de thème",
     footer: "Construit avec Next.js & Tailwind CSS. Hébergé sur Vercel.",
+    careerTitle: "Parcours en un coup d'œil",
+    legendStudies: "Études",
+    legendExperience: "Expérience",
+    legendCurrent: "Poste actuel",
   },
   en: {
     present: "Present",
@@ -51,5 +55,9 @@ export const UI = {
     switchLangLabel: "Voir en français",
     toggleTheme: "Toggle theme",
     footer: "Built with Next.js & Tailwind CSS. Hosted on Vercel.",
+    careerTitle: "Career at a glance",
+    legendStudies: "Studies",
+    legendExperience: "Experience",
+    legendCurrent: "Current role",
   },
 } as const satisfies Record<Lang, Record<string, string>>;

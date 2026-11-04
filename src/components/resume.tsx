@@ -2,6 +2,7 @@ import { MailIcon, MapPinIcon, PhoneIcon, ArrowUpRightIcon } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CareerChart } from "@/components/career-chart";
 import { PrintButton } from "@/components/print-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { RESUME_DATA } from "@/data/resume-data";
@@ -24,12 +25,15 @@ function Chip({ children }: { children: React.ReactNode }) {
   return (
     <Badge
       variant="outline"
-      className="border-border bg-muted/40 font-normal text-[11px] text-muted-foreground"
+      className="border-border bg-muted/40 font-normal text-[11px] text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
     >
       {children}
     </Badge>
   );
 }
+
+/** Staggered entrance: order `i` sets the animation delay (see .enter in globals.css). */
+const enter = (i: number) => ({ className: "enter", style: { "--i": i } as React.CSSProperties });
 
 function prettyPhone(tel: string) {
   // +33610556771 -> +33 6 10 55 67 71
@@ -84,12 +88,21 @@ export function Resume({ lang }: { lang: Lang }) {
         <section className="flex flex-col-reverse gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="space-y-4">
             <div className="space-y-2">
-              <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{D.name}</h1>
-              <p className="text-lg font-medium text-primary">{t(D.headline, lang)}</p>
+              <h1 {...enter(0)}>
+                <span className="block text-4xl font-semibold tracking-tight sm:text-5xl">{D.name}</span>
+              </h1>
+              <p {...enter(1)}>
+                <span className="block text-lg font-medium text-primary">{t(D.headline, lang)}</span>
+              </p>
             </div>
-            <p className="max-w-xl text-pretty text-muted-foreground">{t(D.tagline, lang)}</p>
+            <div {...enter(2)}>
+              <p className="max-w-xl text-pretty text-muted-foreground">{t(D.tagline, lang)}</p>
+            </div>
 
-            <ul className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-muted-foreground">
+            <ul
+              {...enter(3)}
+              className="enter flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-muted-foreground"
+            >
               <li>
                 <a href={D.locationLink} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">
                   <MapPinIcon className="size-3.5" />
@@ -110,7 +123,7 @@ export function Resume({ lang }: { lang: Lang }) {
               </li>
             </ul>
 
-            <div className="flex flex-wrap items-center gap-2 pt-1 print:hidden">
+            <div {...enter(4)} className="enter flex flex-wrap items-center gap-2 pt-1 print:hidden">
               <PrintButton label={ui.downloadPdf} />
               {D.contact.social.map((social) => (
                 <Button key={social.name} variant="outline" size="sm" asChild>
@@ -123,7 +136,10 @@ export function Resume({ lang }: { lang: Lang }) {
             </div>
           </div>
 
-          <Avatar className="size-24 shrink-0 rounded-2xl ring-1 ring-border sm:size-28 print:size-20">
+          <Avatar
+            {...enter(1)}
+            className="enter size-24 shrink-0 rounded-2xl ring-1 ring-border sm:size-28 print:size-20"
+          >
             <AvatarImage alt={D.name} src={D.avatarUrl} className="rounded-2xl" />
             <AvatarFallback className="rounded-2xl">{D.initials}</AvatarFallback>
           </Avatar>
@@ -132,7 +148,8 @@ export function Resume({ lang }: { lang: Lang }) {
         {/* Highlights */}
         <section
           aria-label="Highlights"
-          className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 print:hidden"
+          {...enter(5)}
+          className="enter grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 print:hidden"
         >
           {D.highlights.map((h) => (
             <div key={h.label.en} className="bg-card p-5">
@@ -142,16 +159,21 @@ export function Resume({ lang }: { lang: Lang }) {
           ))}
         </section>
 
+        {/* Career timeline chart */}
+        <section {...enter(6)} className="enter -mt-8 print:hidden">
+          <CareerChart lang={lang} />
+        </section>
+
         {/* About */}
-        <section>
+        <section className="reveal">
           <SectionTitle index={1}>{ui.about}</SectionTitle>
           <p className="text-pretty leading-relaxed text-muted-foreground">{t(D.summary, lang)}</p>
         </section>
 
         {/* Experience */}
-        <section>
+        <section className="reveal">
           <SectionTitle index={2}>{ui.experience}</SectionTitle>
-          <ol className="relative ml-1.5 space-y-10 border-l border-border pl-6 print:space-y-5">
+          <ol className="timeline relative ml-1.5 space-y-10 border-l border-border pl-6 print:space-y-5">
             {D.work.map((job, jobIndex) => {
               const isCurrent = job.roles[0].end === null;
               return (
@@ -159,7 +181,7 @@ export function Resume({ lang }: { lang: Lang }) {
                   <span
                     aria-hidden
                     className={cn(
-                      "absolute -left-[30.5px] top-1.5 size-3 rounded-full ring-4 ring-background",
+                      "absolute -left-[30.5px] top-1.5 z-1 size-3 rounded-full ring-4 ring-background",
                       isCurrent ? "bg-primary" : "bg-muted-foreground/40",
                     )}
                   />
@@ -171,7 +193,7 @@ export function Resume({ lang }: { lang: Lang }) {
                       className="group inline-flex items-center gap-1 hover:text-primary"
                     >
                       {job.company}
-                      <ArrowUpRightIcon className="size-4 opacity-0 transition-opacity group-hover:opacity-100 print:hidden" />
+                      <ArrowUpRightIcon className="size-4 -translate-x-1 translate-y-1 opacity-0 transition duration-200 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100 print:hidden" />
                     </a>
                   </h3>
 
@@ -183,7 +205,7 @@ export function Resume({ lang }: { lang: Lang }) {
                             {t(role.title, lang)}
                             {role.end === null && jobIndex === 0 && (
                               <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2 py-0.5 align-middle font-mono text-[10px] font-normal text-primary print:hidden">
-                                <span className="size-1.5 rounded-full bg-primary" />
+                                <span className="pulse-dot size-1.5 rounded-full bg-primary" />
                                 {ui.currently}
                               </span>
                             )}
@@ -216,7 +238,7 @@ export function Resume({ lang }: { lang: Lang }) {
         </section>
 
         {/* Skills */}
-        <section className="break-inside-avoid">
+        <section className="reveal break-inside-avoid">
           <SectionTitle index={3}>{ui.skills}</SectionTitle>
           <dl className="space-y-4 print:space-y-2">
             {D.skills.map((group) => (
@@ -234,7 +256,7 @@ export function Resume({ lang }: { lang: Lang }) {
         </section>
 
         {/* Education */}
-        <section className="break-inside-avoid">
+        <section className="reveal break-inside-avoid">
           <SectionTitle index={4}>{ui.education}</SectionTitle>
           <ul className="space-y-4">
             {D.education.map((edu) => (
@@ -255,13 +277,13 @@ export function Resume({ lang }: { lang: Lang }) {
         </section>
 
         {/* Projects */}
-        <section className="break-inside-avoid">
+        <section className="reveal break-inside-avoid">
           <SectionTitle index={5}>{ui.projects}</SectionTitle>
           <div className="grid gap-3 sm:grid-cols-3">
             {D.projects.map((project) => (
               <div
                 key={project.title}
-                className="flex flex-col rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/40"
+                className="flex flex-col rounded-xl border border-border bg-card p-4 transition duration-200 ease-out hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 motion-reduce:hover:translate-y-0"
               >
                 <h3 className="font-medium">{project.title}</h3>
                 <p className="mt-1.5 flex-1 text-sm text-muted-foreground">
