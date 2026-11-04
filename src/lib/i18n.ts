@@ -67,6 +67,8 @@ export const UI = {
     terminal: "Terminal",
     run: "Exécuter",
     paletteFooter: "Essayez help, whoami ou sudo hire florian",
+    watchVideo: "CV en vidéo",
+    closeVideo: "Fermer la vidéo",
   },
   en: {
     present: "Present",
@@ -102,5 +104,7 @@ export const UI = {
     terminal: "Terminal",
     run: "Run",
     paletteFooter: "Try help, whoami or sudo hire florian",
+    watchVideo: "Watch the 1-min video",
+    closeVideo: "Close video",
   },
 } as const satisfies Record<Lang, Record<string, string>>;

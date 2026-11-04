@@ -17,6 +17,7 @@ import { LangHint } from "@/components/lang-hint";
 import { PrintButton } from "@/components/print-button";
 import { PrintResume } from "@/components/print-resume";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { VideoButton } from "@/components/video-button";
 import { RESUME_DATA } from "@/data/resume-data";
 import {
   LANG_PATH,
@@ -235,6 +236,11 @@ export function Resume({ lang }: { lang: Lang }) {
                 className="enter flex flex-wrap items-center gap-2 pt-1 print:hidden"
               >
                 <PrintButton label={ui.downloadPdf} lang={lang} />
+                <VideoButton
+                  lang={lang}
+                  label={ui.watchVideo}
+                  closeLabel={ui.closeVideo}
+                />
                 {D.contact.social.map((social) => (
                   <Button key={social.name} variant="outline" size="sm" asChild>
                     <a href={social.url} target="_blank" rel="noreferrer">
