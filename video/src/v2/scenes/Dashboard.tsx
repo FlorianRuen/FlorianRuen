@@ -8,10 +8,16 @@ import { MONO, SANS } from "../../theme";
 import type { Copy2 } from "../copy";
 import { beat, K } from "../theme";
 
+/** "~9,3 Po" → { prefix: "~", n: 9.3, decimals: 1, sep: ",", suffix: " Po" } */
 function parse(value: string) {
-  const m = value.match(/^([^\d]*)(\d+)(.*)$/);
-  return m ? { prefix: m[1], n: Number(m[2]), suffix: m[3] } : { prefix: "", n: 0, suffix: value };
+  const m = value.match(/^([^\d]*)(\d+)(?:([.,])(\d+))?(.*)$/);
+  if (!m) return { prefix: "", n: 0, decimals: 0, sep: ".", suffix: value };
+  const decimals = m[4]?.length ?? 0;
+  return { prefix: m[1], n: Number(`${m[2]}.${m[4] ?? 0}`), decimals, sep: m[3] ?? ".", suffix: m[5] };
 }
+
+const PRODUCT = D.highlights.filter((h) => h.group === "product");
+const CAREER = D.highlights.filter((h) => h.group === "career");
 
 const Panel: React.FC<{ title: string; at: number; children: React.ReactNode; style?: React.CSSProperties }> = ({
   title,
@@ -87,10 +93,10 @@ export const Dashboard: React.FC<{ copy: Copy2; lang: Lang }> = ({ copy, lang })
 
       {/* stat row */}
       <div style={{ display: "flex", gap: 14 }}>
-        {D.highlights.map((h, i) => {
+        {PRODUCT.map((h, i) => {
           const at = beat(1) + i * beat(1);
-          const { prefix, n, suffix } = parse(t(h.value, lang));
-          const v = Math.round(interpolate(frame, [at, at + 24], [0, n], clamp));
+          const { prefix, n, decimals, sep, suffix } = parse(t(h.value, lang));
+          const v = interpolate(frame, [at, at + 24], [0, n], clamp).toFixed(decimals).replace(".", sep);
           const color = [K.cyan, K.green, K.violet][i];
           return (
             <Panel key={h.label.en} title={t(h.label, lang)} at={at} style={{ flex: 1 }}>
@@ -99,7 +105,7 @@ export const Dashboard: React.FC<{ copy: Copy2; lang: Lang }> = ({ copy, lang })
                 {v}
                 {suffix}
               </div>
-              {i === 1 && (
+              {i === 0 && (
                 <svg aria-hidden="true" width="100%" height={46} viewBox="0 0 400 46" preserveAspectRatio="none" style={{ marginTop: 8 }}>
                   <path d={seriesPath(400, 46, reqP)} stroke={K.green} strokeWidth={2.5} fill="none" />
                 </svg>
@@ -112,6 +118,14 @@ export const Dashboard: React.FC<{ copy: Copy2; lang: Lang }> = ({ copy, lang })
       <div style={{ display: "flex", gap: 14, flex: 1, minHeight: 0 }}>
         {/* career chart */}
         <Panel title={copy.careerPanel} at={beat(3)} style={{ flex: 1.35 }}>
+          <div style={{ display: "flex", gap: 28, marginBottom: 6 }}>
+            {CAREER.map((h, i) => (
+              <div key={h.label.en} style={{ display: "flex", alignItems: "baseline", gap: 10, minWidth: 0, opacity: interpolate(frame, [beat(3.5) + i * 4, beat(3.5) + i * 4 + 8], [0, 1], clamp) }}>
+                <span style={{ fontFamily: SANS, fontWeight: 900, fontSize: 34, color: K.cyan, whiteSpace: "nowrap" }}>{t(h.value, lang)}</span>
+                <span style={{ fontFamily: SANS, fontSize: 15, color: K.dim, lineHeight: 1.2 }}>{t(h.label, lang).split(":")[0]}</span>
+              </div>
+            ))}
+          </div>
           <svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 700 300" preserveAspectRatio="none" style={{ flex: 1 }}>
             {[0.25, 0.5, 0.75].map((g) => (
               <line key={g} x1={0} x2={700} y1={300 * g} y2={300 * g} stroke={K.border} strokeDasharray="4 6" />

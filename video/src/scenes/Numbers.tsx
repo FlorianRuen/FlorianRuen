@@ -12,6 +12,13 @@ function parse(value: string) {
   return { prefix: m[1], n: Number(m[2].replace(",", ".")), suffix: m[3] };
 }
 
+/** v1 keeps its original three cards: years building, requests/day, founder years. */
+const FIGURES = ["8+", "~1M", "5 years"].map((v) => {
+  const h = D.highlights.find((x) => x.value.en === v);
+  if (!h) throw new Error(`v1 figure ${v} missing from resume data`);
+  return h;
+});
+
 /** 14-22 s: the three highlight numbers count up, one per bar. */
 export const Numbers: React.FC<{ copy: Copy; lang: Lang }> = ({ copy, lang }) => {
   const frame = useCurrentFrame();
@@ -31,7 +38,7 @@ export const Numbers: React.FC<{ copy: Copy; lang: Lang }> = ({ copy, lang }) =>
       >
         <Kicker>{copy.numbersKicker}</Kicker>
         <div style={{ display: "flex", gap: 40 }}>
-          {D.highlights.map((h, i) => {
+          {FIGURES.map((h, i) => {
             const at = 10 + i * (BAR / 2);
             const s = popAt(frame, at, 12);
             const { prefix, n, suffix } = parse(t(h.value, lang));

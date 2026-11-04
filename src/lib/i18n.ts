@@ -68,6 +68,8 @@ export const UI = {
     run: "Exécuter",
     paletteFooter: "Essayez help, whoami ou sudo hire florian",
     watchVideo: "CV en vidéo",
+    figuresCareer: "Parcours",
+    figuresProduct: "Produits construits",
     closeVideo: "Fermer la vidéo",
   },
   en: {
@@ -105,6 +107,8 @@ export const UI = {
     run: "Run",
     paletteFooter: "Try help, whoami or sudo hire florian",
     watchVideo: "Watch the 1-min video",
+    figuresCareer: "Career",
+    figuresProduct: "Products I built",
     closeVideo: "Close video",
   },
 } as const satisfies Record<Lang, Record<string, string>>;

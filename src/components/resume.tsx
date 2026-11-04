@@ -267,22 +267,43 @@ export function Resume({ lang }: { lang: Lang }) {
             </Avatar>
           </section>
 
-          {/* Highlights */}
+          {/* Highlights: career figures, then what the products I built handle */}
           <section
             aria-label="Highlights"
             {...enter(5)}
-            className="enter grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 print:grid-cols-3"
+            className="enter space-y-3"
           >
-            {D.highlights.map((h) => (
-              <div
-                key={h.label.en}
-                className="bg-card p-5 print:px-3 print:py-2"
-              >
-                <div className="text-2xl font-semibold tracking-tight print:text-base">
-                  {t(h.value, lang)}
-                </div>
-                <div className="mt-1 text-sm text-muted-foreground">
-                  {t(h.label, lang)}
+            {(
+              [
+                ["career", ui.figuresCareer],
+                ["product", ui.figuresProduct],
+              ] as const
+            ).map(([group, title]) => (
+              <div key={group}>
+                <h2 className="mb-2 font-mono text-xs tracking-wider text-muted-foreground uppercase">
+                  {title}
+                </h2>
+                <div className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3 print:grid-cols-3">
+                  {D.highlights
+                    .filter((h) => h.group === group)
+                    .map((h) => (
+                      <div
+                        key={h.label.en}
+                        className="bg-card p-5 print:px-3 print:py-2"
+                      >
+                        <div
+                          className={cn(
+                            "text-2xl font-semibold tracking-tight print:text-base",
+                            group === "product" && "text-primary",
+                          )}
+                        >
+                          {t(h.value, lang)}
+                        </div>
+                        <div className="mt-1 text-sm text-pretty text-muted-foreground">
+                          {t(h.label, lang)}
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             ))}
