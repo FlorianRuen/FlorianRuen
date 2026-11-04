@@ -4,7 +4,7 @@ import { SITE_URL } from "@/lib/site";
 
 /**
  * Machine-readable versions of the resume, built from the same data as the
- * site: plain text for `curl florianruen.fr/cv`, and the JSON Resume standard
+ * site: plain text for `curl https://florianruen.fr/cv`, and the JSON Resume standard
  * (https://jsonresume.org/schema) for /resume.json.
  */
 
@@ -114,7 +114,7 @@ const spread = (left: string, right: string) =>
 const prettyPhone = (tel: string) =>
   tel.replace(/^\+33(\d)(\d{2})(\d{2})(\d{2})(\d{2})$/, "+33 $1 $2 $3 $4 $5");
 
-/** Plain-text resume for terminals (`curl florianruen.fr/cv`) and copy/paste. */
+/** Plain-text resume for terminals (`curl https://florianruen.fr/cv`) and copy/paste. */
 export function toText(lang: Lang = "en"): string {
   const fr = lang === "fr";
   const rule = "─".repeat(WIDTH);

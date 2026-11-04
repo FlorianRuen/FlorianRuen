@@ -491,7 +491,7 @@ export function Resume({ lang }: { lang: Lang }) {
               <a
                 href={lang === "fr" ? "/cv/fr" : "/cv"}
                 className="transition-colors hover:text-primary"
-                title={`curl ${SITE_URL.replace(/^https?:\/\//, "")}${lang === "fr" ? "/cv/fr" : "/cv"}`}
+                title={`curl ${SITE_URL}${lang === "fr" ? "/cv/fr" : "/cv"}`}
               >
                 $ curl
               </a>

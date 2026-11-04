@@ -1,44 +1,58 @@
-## Hey there 👋, I'm [Florian!](https://github.com/FlorianRuen/)
+## Hey, I'm Florian 👋
 
-[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/florianruen/)
-[![OVHcloud](https://img.shields.io/badge/-OVHcloud--000000?style=for-the-badge&logo=OVH&logoColor=white)](https://github.com/ovh)
+Engineer turned founder turned tech leader. I build products from zero, grow the teams that run them,
+and I'm curious about how AI is changing the way we build software.
 
-### Glad to see you here! &nbsp; ![](https://visitor-badge.glitch.me/badge?page_id=iampavangandhi.iampavangandhi&style=flat-square&color=0088cc)
+```go
+package main
 
-I am a Full Stack Developer currently working at [OVHcloud](https://www.ovhcloud.com/fr/) as IT Tech Lead and Software developer, a French cloud computing company 🚀
+type Engineer struct {
+	Role      string
+	Location  string
+	Path      []string
+	Stack     []string
+	Leads     []string
+	Exploring []string
+}
 
+var florian = Engineer{
+	Role:      "IT Technical Leader @ OVHcloud",
+	Location:  "Paris, France",
+	Path:      []string{"Founder & CTO (5 yrs)", "Head of Software", "IT Technical Leader"},
+	Stack:     []string{"Go", "TypeScript", "React", "PostgreSQL", "Python"},
+	Leads:     []string{"0 → 1 products", "architecture decisions", "growing engineers"},
+	Exploring: []string{"LLMs", "AI-assisted development", "developer experience"},
+}
+```
 
-I got an engineering degree in Electronics and industrial computing and I'm passionate about artificial intelligence and tech-focused products that transform the future of work.
+Founded an award-winning AI startup · Lead an API handling ~1M requests/day · 8+ years building products
 
+### How I lead
 
-Feel free to connect with me @FlorianRuen for all things tech or just to say hello! Let's shape the future of tech together. 🌟
+- **Boring tech in the core, bold tech at the edges.** Stability where it matters, experiments where they pay off.
+- **Write decisions down.** A short doc beats a long meeting, and the next person will thank you.
+- **Ship small, measure, iterate.** Feedback from real users beats any roadmap.
+- **Teams over heroes.** The goal is a team that doesn't need me in every room.
 
-### Talking about Personal Stuff:
+### Ask me about
 
-- 🛠 &nbsp; I’m currently working with AI, JS, GO, React, Mongo and PostgreSQL.
-- 🚀 &nbsp; I’m currently exploring Web3 and smart contracts.
+0 → 1 products · life as a startup CTO · API & platform design · bringing AI into dev teams
 
------
+### Toolbox
 
-### Languages and Tools
+![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=flat&logo=kotlin&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![OVHcloud](https://img.shields.io/badge/OVHcloud-123F6D?style=flat&logo=ovh&logoColor=white)
 
-![](https://img.shields.io/badge/Tools-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Tools-MongoDB-informational?style=flat&logo=mongodb&&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Tools-Retool-informational?style=flat&logo=retool&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Tools-Gradle-informational?style=flat&logo=gradle&logoColor=white&color=ff6932)
+### Let's talk
 
-![](https://img.shields.io/badge/Code-Golang-informational?style=flat&logo=go&logoColor=white&color=3b7794)
-![](https://img.shields.io/badge/Code-Python-informational?style=flat&logo=python&logoColor=white&color=3b7794)
-![](https://img.shields.io/badge/Code-JavaScript-informational?style=flat&logo=javascript&logoColor=white&color=3b7794)
-![](https://img.shields.io/badge/Code-Csharp-informational?style=flat&logo=csharp&logoColor=white&color=3b7794)
-![](https://img.shields.io/badge/Code-ReactJS-informational?style=flat&logo=react&logoColor=white&color=3b7794)
+[Resume](https://florianruen.fr) · [LinkedIn](https://www.linkedin.com/in/florianruen/) · [Email](mailto:florian.ruen@gmail.com)
 
-![](https://img.shields.io/badge/Editor-IntelliJ_IDEA-informational?style=flat&logo=intellij-idea&logoColor=white&color=ff6932)
-![](https://img.shields.io/badge/Editor-Visual_studio_code-informational?style=flat&logo=visualstudiocode&logoColor=white&color=ff6932)
-
-![](https://img.shields.io/badge/Cloud-Amazon_web_services-informational?style=flat&logo=amazonaws&&logoColor=white&color=3b7794)
-
------
-
-### Github stats
-[![My Awesome Stats](https://awesome-github-stats.azurewebsites.net/user-stats/FlorianRuen?cardType=level&theme=graywhite&preferLogin=false&Background=3B7794&Text=FFFFFF&Title=FFFFFF&Ring=FF6932)](https://git.io/awesome-stats-card)
+Prefer the terminal? `curl https://florianruen.fr/cv`
