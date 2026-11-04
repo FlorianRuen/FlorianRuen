@@ -23,6 +23,15 @@ export function formatDate(value: string | null, lang: Lang): string {
   }).format(date);
 }
 
+/** "Nov 2026" / "nov. 2026" for a full Date. */
+export function formatMonth(date: Date, lang: Lang): string {
+  return new Intl.DateTimeFormat(lang === "fr" ? "fr-FR" : "en-GB", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
+
 export const UI = {
   fr: {
     present: "Aujourd'hui",
@@ -36,8 +45,14 @@ export const UI = {
     switchLang: "English",
     switchLangLabel: "View in English",
     toggleTheme: "Changer de thème",
-    footer: "Construit avec Next.js & Tailwind CSS. Hébergé sur Vercel.",
     careerTitle: "Parcours en un coup d'œil",
+    product: "Le produit",
+    copyEmail: "Copier l'adresse e-mail",
+    copied: "Copié !",
+    lastUpdated: "Mis à jour",
+    printFooter: "Version complète et à jour :",
+    viewSource: "Voir le code source",
+    machineReadable: "Code source et formats lisibles par machine",
     legendStudies: "Études",
     legendExperience: "Expérience",
     legendCurrent: "Poste actuel",
@@ -54,8 +69,14 @@ export const UI = {
     switchLang: "Français",
     switchLangLabel: "Voir en français",
     toggleTheme: "Toggle theme",
-    footer: "Built with Next.js & Tailwind CSS. Hosted on Vercel.",
     careerTitle: "Career at a glance",
+    product: "The product",
+    copyEmail: "Copy email address",
+    copied: "Copied!",
+    lastUpdated: "Last updated",
+    printFooter: "Full, up-to-date version:",
+    viewSource: "View source",
+    machineReadable: "Source code and machine-readable formats",
     legendStudies: "Studies",
     legendExperience: "Experience",
     legendCurrent: "Current role",

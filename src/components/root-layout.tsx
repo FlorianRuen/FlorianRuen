@@ -4,22 +4,19 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { THEME_INIT_SCRIPT } from "@/components/theme-toggle";
 import { RESUME_DATA } from "@/data/resume-data";
 import { LANG_PATH, t, type Lang } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/site";
 
 import "@/app/globals.css";
 
 const sans = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--font-jetbrains-mono" });
 
-// Vercel sets this at build time; fall back to localhost for local builds.
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
 
 export function buildMetadata(lang: Lang): Metadata {
   const title = `${RESUME_DATA.name} · ${t(RESUME_DATA.headline, lang)}`;
   const description = t(RESUME_DATA.tagline, lang);
   return {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(SITE_URL),
     title,
     description,
     alternates: {
@@ -32,9 +29,9 @@ export function buildMetadata(lang: Lang): Metadata {
       description,
       url: LANG_PATH[lang],
       locale: lang === "fr" ? "fr_FR" : "en_US",
-      images: [{ url: RESUME_DATA.avatarUrl, width: 460, height: 460, alt: RESUME_DATA.name }],
+      alternateLocale: lang === "fr" ? "en_US" : "fr_FR",
     },
-    twitter: { card: "summary", title, description, images: [RESUME_DATA.avatarUrl] },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

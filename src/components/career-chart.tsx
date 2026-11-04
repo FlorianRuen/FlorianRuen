@@ -80,7 +80,7 @@ export function CareerChart({ lang }: { lang: Lang }) {
   ];
 
   return (
-    <figure className="rounded-xl border border-border bg-card p-4 sm:p-5 print:hidden">
+    <figure className="overflow-x-clip rounded-xl border border-border bg-card p-4 sm:p-5 print:hidden">
       <figcaption className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           {ui.careerTitle}
@@ -151,8 +151,11 @@ export function CareerChart({ lang }: { lang: Lang }) {
                     <span
                       aria-hidden
                       className={cn(
-                        "pointer-events-none absolute bottom-full z-20 mb-2 w-max max-w-[15rem] rounded-md border border-border bg-popover px-2.5 py-1.5 text-left opacity-0 shadow-md transition-opacity duration-150 group-hover:opacity-100",
-                        left > 55 ? "right-0" : "left-0",
+                        // `invisible` (not just transparent) so hidden tooltips take no room
+                        // and can't widen the page on phones.
+                        "pointer-events-none invisible absolute bottom-full z-20 mb-2 w-max max-w-[min(15rem,70vw)] rounded-md border border-border bg-popover px-2.5 py-1.5 text-left opacity-0 shadow-md transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100",
+                        // Anchor on the side with room: bars on the right half open leftwards.
+                        left + (right - left) / 2 > 50 ? "right-0" : "left-0",
                       )}
                     >
                       <span className="block text-xs font-medium text-foreground">{row.label}</span>

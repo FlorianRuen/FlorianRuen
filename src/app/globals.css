@@ -94,29 +94,267 @@
   }
 }
 
-/* Print / "Download PDF": always light, compact, A4. */
+/* ------------------------------------------------------------------ */
+/* Print / "Download PDF": a dedicated two-column A4 resume (.cv),      */
+/* see print-resume.tsx. On screen it is hidden; when printing, the     */
+/* website (.site) is hidden instead.                                   */
+/* ------------------------------------------------------------------ */
+
+.cv {
+  display: none;
+}
+
 @media print {
+  /* Zero page margin removes the browser's own header/footer (date, title,
+     URL, page numbers). The resume adds its own padding instead. */
   @page {
     size: A4;
-    margin: 14mm 16mm;
+    margin: 0;
   }
-  html {
-    font-size: 11px;
+
+  .site {
+    /* biome-ignore lint/complexity/noImportantStyles: must beat the site's own display utilities */
+    display: none !important;
   }
-  :root,
-  .dark {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --primary: 221 83% 45%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 35%;
-    --border: 240 5.9% 88%;
-    color-scheme: light;
-  }
+
+  html,
   body {
+    /* biome-ignore lint/complexity/noImportantStyles: must beat the dark theme's bg-background on <body> */
+    background: #fff !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+
+  .cv {
+    --cv-ink: #0f172a;
+    --cv-text: #334155;
+    --cv-muted: #64748b;
+    --cv-accent: #1d4ed8;
+    --cv-rule: #e2e8f0;
+
+    display: block;
+    color: var(--cv-text);
+    font-size: 9.5pt;
+    line-height: 1.45;
+  }
+  .cv a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .cv h1,
+  .cv h2,
+  .cv h3,
+  .cv h4 {
+    color: var(--cv-ink);
+    break-after: avoid;
+  }
+
+  /* Header band */
+  .cv-header {
+    display: flex;
+    align-items: center;
+    gap: 6mm;
+    padding: 12mm 14mm 8mm;
+    border-bottom: 2.5pt solid var(--cv-accent);
+  }
+  .cv-photo {
+    width: 26mm;
+    height: 26mm;
+    border-radius: 4mm;
+    object-fit: cover;
+  }
+  .cv-name {
+    font-size: 24pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .cv-headline {
+    margin-top: 1.5mm;
+    color: var(--cv-accent);
+    font-size: 12pt;
+    font-weight: 600;
+  }
+  .cv-tagline {
+    margin-top: 1.5mm;
+    color: var(--cv-muted);
+    font-size: 9.5pt;
+  }
+
+  /* Two columns with a float, not grid or flex: Firefox cannot split a
+     grid across pages and would push the whole body to page 2, leaving
+     page 1 with only the header. Floats split cleanly in every browser.
+     "clone" repeats the padding on each page, so page 2 gets the same
+     top and bottom margins as page 1. */
+  .cv-body {
+    display: flow-root;
+  }
+  .cv-side {
+    float: left;
+    width: 58mm;
+    padding: 8mm 6mm 12mm 14mm;
+    font-size: 8.5pt;
+  }
+  .cv-side > section + section {
+    margin-top: 4.5mm;
+  }
+  .cv-main {
+    margin-left: 58mm;
+    padding: 8mm 14mm 12mm 7mm;
+    border-left: 0.75pt solid var(--cv-rule);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .cv-main > section + section {
+    margin-top: 5mm;
+  }
+
+  .cv-side-title,
+  .cv-main-title {
+    margin-bottom: 2.5mm;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cv .cv-side-title,
+  .cv .cv-main-title {
+    color: var(--cv-accent);
+  }
+  .cv .cv-main-title {
+    padding-bottom: 1.2mm;
+    border-bottom: 0.75pt solid var(--cv-rule);
+  }
+
+  .cv-contact li {
+    margin-bottom: 1mm;
+    font-size: 8pt;
+    overflow-wrap: anywhere;
+  }
+  .cv-figures li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5mm;
+  }
+  .cv-figures strong {
+    color: var(--cv-ink);
+    font-size: 11pt;
+  }
+  .cv-figures span {
+    color: var(--cv-muted);
+  }
+
+  .cv-edu,
+  .cv-skill-group {
+    break-inside: avoid;
+  }
+  .cv-skill-group + .cv-skill-group,
+  .cv-edu + .cv-edu {
+    margin-top: 1.6mm;
+  }
+  .cv-skill-group h3,
+  .cv-edu h3 {
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+
+  .cv-dates {
+    color: var(--cv-muted);
+    font-size: 8pt;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .cv-entry {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3mm;
+    break-inside: avoid;
+  }
+  .cv-entry + .cv-entry {
+    margin-top: 1.8mm;
+  }
+  .cv-entry h3 {
+    font-size: 9.5pt;
+    font-weight: 600;
+  }
+  .cv-entry p {
+    color: var(--cv-muted);
+  }
+  .cv-summary {
+    text-align: justify;
+  }
+
+  /* Experience */
+  .cv-job {
+    break-inside: avoid;
+  }
+  .cv-job + .cv-job {
+    margin-top: 4.5mm;
+  }
+  .cv-company {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3mm;
+    font-size: 11pt;
+    font-weight: 700;
+  }
+  .cv-tech {
+    color: var(--cv-muted);
+    font-size: 7.5pt;
+    font-weight: 400;
+    text-align: right;
+  }
+  .cv-product {
+    margin-top: 1mm;
+    padding-left: 2.5mm;
+    border-left: 1.5pt solid var(--cv-rule);
+    color: var(--cv-muted);
+    font-size: 8.5pt;
+    font-style: italic;
+  }
+  .cv-role {
+    margin-top: 2mm;
+  }
+  .cv-role-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3mm;
+  }
+  .cv-role-head h4 {
+    font-size: 9.5pt;
+    font-weight: 600;
+  }
+  .cv-role ul {
+    margin-top: 0.8mm;
+    padding-left: 4mm;
+    list-style: disc;
+  }
+  .cv-role li {
+    margin-top: 0.6mm;
+  }
+  .cv-role li::marker {
+    color: var(--cv-accent);
+  }
+  .cv-press {
+    margin-top: 1.5mm;
+    color: var(--cv-muted);
+    font-size: 8pt;
+  }
+  .cv-press strong {
+    color: var(--cv-text);
+    font-weight: 600;
+  }
+
+  .cv-footer {
+    margin: 0 14mm;
+    padding: 0 0 8mm;
+    color: var(--cv-muted);
+    font-size: 7.5pt;
+    text-align: right;
   }
 }
 
@@ -165,6 +403,20 @@
   }
 }
 
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
 @keyframes icon-in {
   from {
     opacity: 0;
@@ -196,6 +448,14 @@
   .bar-grow {
     transform-origin: left;
     animation: bar-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.45s both;
+  }
+
+  /* Copy-email confirmation and the language hint bar. */
+  .pop-in {
+    animation: pop-in 0.25s cubic-bezier(0.3, 1.5, 0.6, 1);
+  }
+  .slide-down {
+    animation: slide-down 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
   /* 6. Theme toggle icon turns in when it appears. */

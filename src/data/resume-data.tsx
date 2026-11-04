@@ -10,9 +10,10 @@ export type Localized = { fr: string; en: string };
 export const RESUME_DATA = {
   name: "Florian Ruen",
   initials: "FR",
-  location: { fr: "Orléans, France", en: "Orléans, France" },
-  locationLink: "https://maps.app.goo.gl/ntqUULunKpJbANGx5",
-  avatarUrl: "https://avatars.githubusercontent.com/u/13837778?v=4",
+  location: { fr: "Paris, France", en: "Paris, France" },
+  locationLink: "https://www.google.com/maps/search/?api=1&query=Paris%2C+France",
+  /** Served from /public, so it is fast and can't change by accident. */
+  avatarUrl: "/avatar.jpg",
 
   headline: {
     fr: "IT Technical Leader chez OVHcloud",
@@ -23,8 +24,8 @@ export const RESUME_DATA = {
     en: "Software engineer and founder, passionate about AI, innovation and building products from zero.",
   },
   summary: {
-    fr: "Ingénieur informatique, j'ai passé plus de 8 ans à concevoir et lancer des produits : d'abord en fondant et dirigeant ma propre startup d'IA, puis en prenant la direction technique d'une solution Web3, avant de rejoindre OVHcloud, où j'occupe aujourd'hui le poste d'IT Technical Leader. J'aime transformer des idées en produits concrets, robustes et utiles, accompagner les équipes dans leurs choix techniques et explorer ce que l'IA change dans notre façon de construire des logiciels.",
-    en: "I'm a computer engineer who has spent 8+ years designing and launching products: first by founding and running my own AI startup, then by leading software at a Web3 company, before joining OVHcloud, where I'm now an IT Technical Leader. I love turning ideas into concrete, reliable and useful products, helping teams make sound technical decisions, and exploring how AI is changing the way we build software.",
+    fr: "Ingénieur informatique, j'ai passé plus de 8 ans à concevoir et lancer des produits : d'abord en fondant et dirigeant ma propre startup d'IA, primée pour son innovation, puis en prenant la direction technique d'une solution Web3, avant de rejoindre OVHcloud, où j'occupe aujourd'hui le poste d'IT Technical Leader. J'aime transformer des idées en produits concrets, robustes et utiles, accompagner les équipes dans leurs choix techniques et explorer ce que l'IA change dans notre façon de construire des logiciels.",
+    en: "I'm a computer engineer who has spent 8+ years designing and launching products: first by founding and running my own award-winning AI startup, then by leading software at a Web3 company, before joining OVHcloud, where I'm now an IT Technical Leader. I love turning ideas into concrete, reliable and useful products, helping teams make sound technical decisions, and exploring how AI is changing the way we build software.",
   },
 
   highlights: [
@@ -33,15 +34,18 @@ export const RESUME_DATA = {
       label: { fr: "ans à construire des logiciels", en: "years building software" },
     },
     {
-      value: { fr: "0 → 1", en: "0 → 1" },
+      value: { fr: "~1M", en: "~1M" },
       label: {
-        fr: "produits lancés de l'idée au marché",
-        en: "products taken from idea to market",
+        fr: "requêtes par jour traitées par l'API que je développe",
+        en: "requests per day handled by the API I build",
       },
     },
     {
-      value: { fr: "IA · Cloud · Web3", en: "AI · Cloud · Web3" },
-      label: { fr: "domaines explorés", en: "domains explored" },
+      value: { fr: "5 ans", en: "5 years" },
+      label: {
+        fr: "à fonder et diriger une startup d'IA",
+        en: "founding and running an AI startup",
+      },
     },
   ],
 
@@ -66,6 +70,10 @@ export const RESUME_DATA = {
     {
       company: "OVHcloud",
       link: "https://www.ovhcloud.com",
+      summary: {
+        fr: "API interne qui abstrait la complexité de consommation des services cloud (serveurs, réseau, vRack, BGP peerings…) pour les équipes produit au contact des clients finaux. ~1 million de requêtes par jour en moyenne.",
+        en: "Internal API that abstracts away the complexity of consuming cloud services (servers, networking, vRack, BGP peerings…) for the product teams serving end customers. ~1 million requests per day on average.",
+      },
       roles: [
         {
           title: { fr: "IT Technical Leader", en: "IT Technical Leader" },
@@ -92,8 +100,12 @@ export const RESUME_DATA = {
           end: "2025-08",
           bullets: [
             {
-              fr: "Conception et développement d'applications et d'API au sein du leader européen du cloud.",
-              en: "Designed and built applications and APIs at Europe's leading cloud provider.",
+              fr: "Conception et développement de l'API, pour que les équipes produit consomment serveurs, réseau, vRack et BGP peerings sans en maîtriser toute la complexité.",
+              en: "Designed and built the API so product teams can consume servers, networking, vRack and BGP peerings without having to master all of their complexity.",
+            },
+            {
+              fr: "Centralisation dans un même service de l'expertise et des règles métier nécessaires à la consommation des services cloud.",
+              en: "Centralised the expertise and business rules required to consume cloud services into a single service.",
             },
           ],
         },
@@ -128,17 +140,33 @@ export const RESUME_DATA = {
           end: "2023",
           bullets: [
             {
-              fr: "Création d'une startup développant un logiciel basé sur l'IA pour prévenir les accidents du travail.",
-              en: "Founded a startup building AI-powered software to prevent workplace accidents.",
+              fr: "Création d'une startup qui utilise l'IA et la vision par ordinateur pour détecter les situations à risque et prévenir les accidents du travail.",
+              en: "Founded a startup using AI and computer vision to detect risky situations and prevent workplace accidents.",
             },
             {
-              fr: "Direction de l'entreprise et de la technique, du premier prototype jusqu'au produit.",
-              en: "Led both the business and the technology, from the first prototype to the product.",
+              fr: "Lauréat du Prix de l'innovation Préventica 2021 et finaliste du concours La Tribune « 10 000 startups pour changer le monde ».",
+              en: "Winner of the 2021 Préventica Innovation Award and finalist of La Tribune's \"10,000 startups to change the world\" competition.",
+            },
+            {
+              fr: "Direction de l'entreprise et de la technique, du premier prototype jusqu'au produit, dont une application de remontée des situations à risque.",
+              en: "Led both the business and the technology, from the first prototype to the product, including an app for reporting hazardous situations.",
             },
           ],
         },
       ],
       tech: ["Java", "React", "Python", "Gradle", "PostgreSQL"],
+      press: {
+        label: { fr: "Dans les médias", en: "In the press" },
+        items: [
+          { name: "Europe 1 · La France bouge", url: null },
+          { name: "Ouest-France", url: "https://www.ouest-france.fr/economie/entreprises/entreprise-eyes-r-la-startup-francaise-leader-de-la-prevention-des-risques-au-travail-7608639" },
+          { name: "Maddyness", url: "https://www.maddyness.com/2022/06/09/maddytools-eyesr-cameras-detecter-risques-accident-entreprise/" },
+          { name: "Radio France", url: "https://www.radiofrance.fr/ici/podcasts/la-nouvelle-eco/la-nouvelle-eco-eye-sr-l-intelligence-artificielle-au-service-de-la-securite-des-salaries-7693925" },
+          { name: "La République du Centre", url: "https://www.larep.fr/montargis-45200/economie/eyes-r-la-societe-creatrice-de-la-camera-qui-repere-si-le-port-du-masque-est-respecte-au-sein-des-entreprises-uniquement_13895438" },
+          { name: "Prévention BTP", url: "https://www.preventionbtp.fr/actualites/equipements/une-application-de-remontee-de-situations-a-risque_22dXZLYbQ8a7peHPXW56yk" },
+          { name: "Inforisque", url: "https://inforisque.fr/actualites/detail/34214-lancement-de-lapplication-de-remontee-des-situations-a-risques-eyesr/" },
+        ],
+      },
     },
     {
       company: "Forvia Seating",
