@@ -67,7 +67,7 @@ export const UI = {
     terminal: "Terminal",
     run: "Exécuter",
     paletteFooter: "Essayez help, whoami ou sudo hire florian",
-    watchVideo: "Mon CV en vidéo (1 min)",
+    watchVideo: "CV en vidéo",
     closeVideo: "Fermer la vidéo",
   },
   en: {
