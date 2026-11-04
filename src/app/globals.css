@@ -1,68 +1,84 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Dark mode is driven by the `dark` class on <html> (see theme-toggle.tsx). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-
+    --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-
-    --primary: 200 43% 41%;
-    --primary-foreground: 210 20% 98%;
-
-    --secondary: 16 100% 60%;
-    --secondary-foreground: 210 20% 98%;
-
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-
-    --accent: 173 12% 15%;
-    --accent-foreground: 210 20% 98%;
-
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 221 83% 50%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 42%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 221 83% 50%;
     --radius: 0.5rem;
+    color-scheme: light;
   }
 
+  /* Dark theme: deep navy/slate instead of pure black, softer on the eyes. */
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-
+    --background: 222 40% 11%;
+    --foreground: 210 40% 96%;
+    --card: 221 37% 14%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 40% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 213 94% 68%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 30% 19%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 30% 19%;
+    --muted-foreground: 215 22% 70%;
+    --accent: 217 30% 19%;
+    --accent-foreground: 210 40% 96%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
+    --destructive-foreground: 210 40% 96%;
+    --border: 217 26% 22%;
+    --input: 217 26% 22%;
+    --ring: 213 94% 68%;
+    color-scheme: dark;
   }
 }
 
@@ -73,8 +89,424 @@
   body {
     @apply bg-background text-foreground;
   }
+  ::selection {
+    @apply bg-primary/20;
+  }
 }
 
-.print-force-new-page {
-  page-break-before: always;
+/* ------------------------------------------------------------------ */
+/* Print / "Download PDF": a dedicated two-column A4 resume (.cv),      */
+/* see print-resume.tsx. On screen it is hidden; when printing, the     */
+/* website (.site) is hidden instead.                                   */
+/* ------------------------------------------------------------------ */
+
+.cv {
+  display: none;
+}
+
+@media print {
+  /* Zero page margin removes the browser's own header/footer (date, title,
+     URL, page numbers). The resume adds its own padding instead. */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .site {
+    /* biome-ignore lint/complexity/noImportantStyles: must beat the site's own display utilities */
+    display: none !important;
+  }
+
+  html,
+  body {
+    /* biome-ignore lint/complexity/noImportantStyles: must beat the dark theme's bg-background on <body> */
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cv {
+    --cv-ink: #0f172a;
+    --cv-text: #334155;
+    --cv-muted: #64748b;
+    --cv-accent: #1d4ed8;
+    --cv-rule: #e2e8f0;
+
+    display: block;
+    color: var(--cv-text);
+    font-size: 9.5pt;
+    line-height: 1.45;
+  }
+  .cv a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .cv h1,
+  .cv h2,
+  .cv h3,
+  .cv h4 {
+    color: var(--cv-ink);
+    break-after: avoid;
+  }
+
+  /* Header band */
+  .cv-header {
+    display: flex;
+    align-items: center;
+    gap: 6mm;
+    padding: 12mm 14mm 8mm;
+    border-bottom: 2.5pt solid var(--cv-accent);
+  }
+  .cv-photo {
+    width: 26mm;
+    height: 26mm;
+    border-radius: 4mm;
+    object-fit: cover;
+  }
+  .cv-name {
+    font-size: 24pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .cv-headline {
+    margin-top: 1.5mm;
+    color: var(--cv-accent);
+    font-size: 12pt;
+    font-weight: 600;
+  }
+  .cv-tagline {
+    margin-top: 1.5mm;
+    color: var(--cv-muted);
+    font-size: 9.5pt;
+  }
+
+  /* Two columns with a float, not grid or flex: Firefox cannot split a
+     grid across pages and would push the whole body to page 2, leaving
+     page 1 with only the header. Floats split cleanly in every browser.
+     "clone" repeats the padding on each page, so page 2 gets the same
+     top and bottom margins as page 1. */
+  .cv-body {
+    display: flow-root;
+  }
+  .cv-side {
+    float: left;
+    width: 58mm;
+    padding: 8mm 6mm 12mm 14mm;
+    font-size: 8.5pt;
+  }
+  .cv-side > section + section {
+    margin-top: 4.5mm;
+  }
+  .cv-main {
+    margin-left: 58mm;
+    padding: 8mm 14mm 12mm 7mm;
+    border-left: 0.75pt solid var(--cv-rule);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .cv-main > section + section {
+    margin-top: 5mm;
+  }
+
+  .cv-side-title,
+  .cv-main-title {
+    margin-bottom: 2.5mm;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cv .cv-side-title,
+  .cv .cv-main-title {
+    color: var(--cv-accent);
+  }
+  .cv .cv-main-title {
+    padding-bottom: 1.2mm;
+    border-bottom: 0.75pt solid var(--cv-rule);
+  }
+
+  .cv-contact li {
+    margin-bottom: 1mm;
+    font-size: 8pt;
+    overflow-wrap: anywhere;
+  }
+  .cv-figures li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5mm;
+  }
+  .cv-figures strong {
+    color: var(--cv-ink);
+    font-size: 11pt;
+  }
+  .cv-figures span {
+    color: var(--cv-muted);
+  }
+
+  .cv-edu,
+  .cv-skill-group {
+    break-inside: avoid;
+  }
+  .cv-skill-group + .cv-skill-group,
+  .cv-edu + .cv-edu {
+    margin-top: 1.6mm;
+  }
+  .cv-skill-group h3,
+  .cv-edu h3 {
+    font-size: 8.5pt;
+    font-weight: 600;
+  }
+
+  .cv-dates {
+    color: var(--cv-muted);
+    font-size: 8pt;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .cv-entry {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3mm;
+    break-inside: avoid;
+  }
+  .cv-entry + .cv-entry {
+    margin-top: 1.8mm;
+  }
+  .cv-entry h3 {
+    font-size: 9.5pt;
+    font-weight: 600;
+  }
+  .cv-entry p {
+    color: var(--cv-muted);
+  }
+  .cv-summary {
+    text-align: justify;
+  }
+
+  /* Experience */
+  .cv-job {
+    break-inside: avoid;
+  }
+  .cv-job + .cv-job {
+    margin-top: 4.5mm;
+  }
+  .cv-company {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3mm;
+    font-size: 11pt;
+    font-weight: 700;
+  }
+  .cv-tech {
+    color: var(--cv-muted);
+    font-size: 7.5pt;
+    font-weight: 400;
+    text-align: right;
+  }
+  .cv-product {
+    margin-top: 1mm;
+    padding-left: 2.5mm;
+    border-left: 1.5pt solid var(--cv-rule);
+    color: var(--cv-muted);
+    font-size: 8.5pt;
+    font-style: italic;
+  }
+  .cv-role {
+    margin-top: 2mm;
+  }
+  .cv-role-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3mm;
+  }
+  .cv-role-head h4 {
+    font-size: 9.5pt;
+    font-weight: 600;
+  }
+  .cv-role ul {
+    margin-top: 0.8mm;
+    padding-left: 4mm;
+    list-style: disc;
+  }
+  .cv-role li {
+    margin-top: 0.6mm;
+  }
+  .cv-role li::marker {
+    color: var(--cv-accent);
+  }
+  .cv-press {
+    margin-top: 1.5mm;
+    color: var(--cv-muted);
+    font-size: 8pt;
+  }
+  .cv-press strong {
+    color: var(--cv-text);
+    font-weight: 600;
+  }
+
+  .cv-footer {
+    margin: 0 14mm;
+    padding: 0 0 8mm;
+    color: var(--cv-muted);
+    font-size: 7.5pt;
+    text-align: right;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion: subtle, CSS-only. Disabled for reduced-motion and in print. */
+/* ------------------------------------------------------------------ */
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@keyframes draw-line {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. Page entrance: hero items rise in one after another (--i = order). */
+  .enter {
+    animation: enter 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+
+  /* 2. "Currently" badge: a soft ring pulses around the dot. */
+  .pulse-dot {
+    position: relative;
+  }
+  .pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: inherit;
+    animation: pulse-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Career chart: bars grow from their start date, once, after the hero. */
+  .bar-grow {
+    transform-origin: left;
+    animation: bar-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.45s both;
+  }
+
+  /* Copy-email confirmation and the language hint bar. */
+  .pop-in {
+    animation: pop-in 0.25s cubic-bezier(0.3, 1.5, 0.6, 1);
+  }
+  .slide-down {
+    animation: slide-down 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* 6. Theme toggle icon turns in when it appears. */
+  .theme-icon {
+    animation: icon-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* 6. Theme switch cross-fade (View Transitions API, see theme-toggle.tsx). */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 220ms;
+  }
+
+  /* Scroll-driven effects: Chrome, Edge, Safari. Others keep the static look. */
+  @supports (animation-timeline: view()) {
+    /* 3. Career line fills with the accent colour as you scroll through it.
+          The 40% insets make the fill follow the middle of the screen. */
+    .timeline {
+      view-timeline: --career block;
+      view-timeline-inset: 40% 40%;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -1px;
+      width: 1px;
+      background: var(--color-primary);
+      transform-origin: top;
+      animation: draw-line linear both;
+      animation-timeline: --career;
+    }
+
+    /* 4. Sections fade up as they enter the screen. */
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+/* Print: no motion, so nothing is captured mid-animation (e.g. still invisible). */
+@media print {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: must beat every animation rule */
+    animation: none !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must beat every transition rule */
+    transition: none !important;
+  }
 }
