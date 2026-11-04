@@ -20,6 +20,7 @@ npm run studio          # live preview / tweak in the browser
 npm run render          # → ../public/video/resume-{en,fr}.{mp4,webm,jpg}
 npm run render -- fr    # one language only
 npm run render:v2       # → ../public/video/resume-v2-{en,fr}.{mp4,webm,jpg}
+npm run icons           # site icon (src/Icon.tsx) → ../src/app/{icon.svg,icon.png,apple-icon.png,favicon.ico}
 ```
 
 Requires `ffmpeg` (for loudness normalisation, WebM encoding and posters).

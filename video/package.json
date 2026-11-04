@@ -7,7 +7,8 @@
     "studio": "remotion studio",
     "render": "node scripts/render.mjs",
     "render:v2": "node scripts/render.mjs --v2",
-    "music:v2": "node scripts/make-music-v2.mjs"
+    "music:v2": "node scripts/make-music-v2.mjs",
+    "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.540",

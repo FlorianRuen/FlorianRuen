@@ -1,4 +1,5 @@
 import { Composition } from "remotion";
+import { Icon } from "./Icon";
 import { ResumeVideo } from "./ResumeVideo";
 import { FPS, TOTAL_FRAMES } from "./theme";
 import { ResumeVideoV2 } from "./v2/ResumeVideoV2";
@@ -34,5 +35,7 @@ export const Root: React.FC = () => (
         defaultProps={{ lang }}
       />
     ))}
+    {/* Site icon, rendered as stills by scripts/make-icons.mjs */}
+    <Composition id="icon" component={Icon} durationInFrames={1} fps={FPS} width={512} height={512} defaultProps={{ full: false }} />
   </>
 );
