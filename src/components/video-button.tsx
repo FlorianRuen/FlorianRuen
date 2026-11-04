@@ -6,6 +6,13 @@ import type { Lang } from "@/lib/i18n";
 import { Button } from "./ui/button";
 
 /**
+ * Which rendered version to play (files in public/video):
+ * "resume-v2" = IDE / CI / Kubernetes take, "resume" = v1 kinetic typography.
+ * Switch back to "resume" to roll back.
+ */
+const VIDEO = "resume-v2";
+
+/**
  * "Watch the 1-min video" button: opens the animated resume (made with
  * Remotion, see /video) in a native <dialog>, so Esc, focus trapping and the
  * backdrop come for free. Nothing is downloaded until the dialog opens
@@ -60,11 +67,11 @@ export function VideoButton({
           controls
           playsInline
           preload="none"
-          poster={`/video/resume-${lang}.jpg`}
+          poster={`/video/${VIDEO}-${lang}.jpg`}
           className="aspect-video w-full rounded-xl bg-black shadow-2xl shadow-black/50"
         >
-          <source src={`/video/resume-${lang}.webm`} type="video/webm" />
-          <source src={`/video/resume-${lang}.mp4`} type="video/mp4" />
+          <source src={`/video/${VIDEO}-${lang}.webm`} type="video/webm" />
+          <source src={`/video/${VIDEO}-${lang}.mp4`} type="video/mp4" />
         </video>
       </dialog>
     </>

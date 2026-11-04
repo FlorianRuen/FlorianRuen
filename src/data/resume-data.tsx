@@ -34,8 +34,13 @@ export const RESUME_DATA = {
     en: "I'm a computer engineer who has spent 8+ years designing and launching products: first by founding and running my own award-winning AI startup, then by leading software at a Web3 company, before joining OVHcloud, where I'm now an IT Technical Leader. I love turning ideas into concrete, reliable and useful products, helping teams make sound technical decisions, and exploring how AI is changing the way we build software.",
   },
 
+  /**
+   * Key figures, shown in two groups on the page: the career, and what the
+   * products I built handle in production. `group` drives the split.
+   */
   highlights: [
     {
+      group: "career",
       value: { fr: "8+", en: "8+" },
       label: {
         fr: "ans à construire des logiciels",
@@ -43,17 +48,43 @@ export const RESUME_DATA = {
       },
     },
     {
-      value: { fr: "~1M", en: "~1M" },
-      label: {
-        fr: "requêtes par jour traitées par l'API que je développe",
-        en: "requests per day handled by the API I build",
-      },
-    },
-    {
+      group: "career",
       value: { fr: "5 ans", en: "5 years" },
       label: {
         fr: "à fonder et diriger une startup d'IA",
         en: "founding and running an AI startup",
+      },
+    },
+    {
+      group: "career",
+      value: { fr: "3", en: "3" },
+      label: {
+        fr: "postes de direction technique : CTO, Head of Software, Tech Leader",
+        en: "technical leadership roles: CTO, Head of Software, Tech Leader",
+      },
+    },
+    {
+      group: "product",
+      value: { fr: "~1M", en: "~1M" },
+      label: {
+        fr: "requêtes par jour traitées par l'API que je développe chez OVHcloud",
+        en: "requests per day handled by the API I build at OVHcloud",
+      },
+    },
+    {
+      group: "product",
+      value: { fr: "~58M", en: "~58M" },
+      label: {
+        fr: "transactions de stockage traitées par la passerelle CIDgravity",
+        en: "storage transactions processed by the CIDgravity gateway",
+      },
+    },
+    {
+      group: "product",
+      value: { fr: "~9,3 Po", en: "~9.3 PB" },
+      label: {
+        fr: "de fichiers stockés sur le web décentralisé",
+        en: "of files stored on the decentralised web",
       },
     },
   ],
@@ -133,6 +164,10 @@ export const RESUME_DATA = {
     {
       company: "CIDgravity",
       link: "https://cidgravity.com",
+      summary: {
+        fr: "Une passerelle simple vers le web décentralisé : une application de stockage de fichiers basée sur Nextcloud et adossée à la blockchain Filecoin et à IPFS. Fichiers immuables pendant au moins 18 mois, intégrité vérifiée chaque jour sur la blockchain et accessibilité contrôlée toutes les 6 heures, données répliquées chez des dizaines de fournisseurs de stockage dans le monde. ~58 millions de transactions et ~9,3 Po de fichiers stockés.",
+        en: "A seamless gateway to the decentralised web: a file storage application built on Nextcloud and backed by the Filecoin blockchain and IPFS. Files are immutable for at least 18 months, their integrity is verified on-chain every day and their retrievability probed every 6 hours, and data is replicated across dozens of storage providers worldwide. ~58 million transactions and ~9.3 PB of files stored.",
+      },
       roles: [
         {
           title: { fr: "Head of Software", en: "Head of Software" },
@@ -140,13 +175,25 @@ export const RESUME_DATA = {
           end: "2024-08",
           bullets: [
             {
-              fr: "Direction du développement d'une passerelle vers le Web3 et le stockage de fichiers décentralisé.",
-              en: "Led development of a gateway to Web3 and decentralised file storage.",
+              fr: "Direction du développement de la passerelle, conçue à partir de zéro.",
+              en: "Led the development of the gateway, built from scratch.",
+            },
+            {
+              fr: "Développement en Go d'une application de gestion des transactions pour les fournisseurs de stockage : règles de tarification par client, puis acceptation ou refus automatique des transactions selon leurs propres critères.",
+              en: "Built a Go transaction-management application for storage providers: per-client pricing rules, then automatic acceptance or rejection of transactions based on their own criteria.",
             },
           ],
         },
       ],
-      tech: ["React", "Go", "Python", "MongoDB"],
+      tech: [
+        "Go",
+        "React",
+        "Python",
+        "MongoDB",
+        "Nextcloud",
+        "Filecoin",
+        "IPFS",
+      ],
     },
     {
       company: "Eyes'R",
@@ -217,8 +264,16 @@ export const RESUME_DATA = {
           end: "2018",
           bullets: [
             {
-              fr: "Création d'une formation soudure et développement de logiciels internes de suivi et d'archivage des programmes automates.",
-              en: "Built a welding training programme and developed internal tools to track and archive PLC programs.",
+              fr: "Projet principal : participation au développement d'un logiciel interne en C# de suivi et d'archivage des programmes automates (robots, lignes de production automatisées). Versionnage, historique et téléchargement garantissent que la dernière version est toujours disponible pour les maintenances et les mises à jour, y compris lors des interventions des nombreux prestataires extérieurs.",
+              en: "Main project: helped build an internal C# tool to track and archive PLC programs for robots and automated production lines. Versioning, history and downloads ensure the latest program is always available for maintenance and updates, including when the many external contractors step in.",
+            },
+            {
+              fr: "Participation au développement d'un logiciel interne en C# de suivi de la production pour le responsable d'unité : saisie quotidienne des objectifs et du réalisé par ligne, et rapports automatiques des écarts au jour, à la semaine ou au mois, en remplacement de fichiers Excel sans calcul automatique.",
+              en: "Helped build an internal C# production-tracking tool for the unit manager: daily entry of targets and actual output per line, with automatic daily, weekly and monthly variance reports, replacing Excel files with no automated calculations.",
+            },
+            {
+              fr: "Contribution au programme de formation à la soudure.",
+              en: "Contributed to the welding training programme.",
             },
           ],
         },

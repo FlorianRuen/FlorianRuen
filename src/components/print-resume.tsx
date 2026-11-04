@@ -80,12 +80,15 @@ export function PrintResume({ lang }: { lang: Lang }) {
               {lang === "fr" ? "En chiffres" : "Key figures"}
             </SideTitle>
             <ul className="cv-figures">
-              {D.highlights.map((h) => (
-                <li key={h.label.en}>
-                  <strong>{t(h.value, lang)}</strong>
-                  <span>{t(h.label, lang)}</span>
-                </li>
-              ))}
+              {/* The "3 leadership roles" figure is skipped: the roles are listed under Experience. */}
+              {D.highlights
+                .filter((h) => h.value.en !== "3")
+                .map((h) => (
+                  <li key={h.label.en}>
+                    <strong>{t(h.value, lang)}</strong>
+                    <span>{t(h.label, lang)}</span>
+                  </li>
+                ))}
             </ul>
           </section>
 
