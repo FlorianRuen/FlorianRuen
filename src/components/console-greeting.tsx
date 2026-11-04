@@ -22,7 +22,7 @@ export function ConsoleGreeting() {
 Like what you see? Let's talk → %c${RESUME_DATA.contact.email}%c
 
   Source of this site   %c${SOURCE_URL}%c
-  Resume as plain text  %ccurl ${SITE_URL.replace(/^https?:\/\//, "")}/cv%c
+  Resume as plain text  %ccurl ${SITE_URL}/cv%c
   JSON Resume           %c${SITE_URL}/resume.json`,
       title,
       body,

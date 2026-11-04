@@ -4,7 +4,15 @@ import { CheckIcon, CopyIcon } from "lucide-react";
 import { useState } from "react";
 
 /** Small icon button that copies a value and confirms with a check mark for 2s. */
-export function CopyButton({ value, label, copiedLabel }: { value: string; label: string; copiedLabel: string }) {
+export function CopyButton({
+  value,
+  label,
+  copiedLabel,
+}: {
+  value: string;
+  label: string;
+  copiedLabel: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {

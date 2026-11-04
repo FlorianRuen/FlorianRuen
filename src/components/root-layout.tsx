@@ -8,20 +8,31 @@ import { SITE_URL } from "@/lib/site";
 
 import "@/app/globals.css";
 
-const sans = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
-const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--font-jetbrains-mono" });
-
+const sans = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+});
 
 export function buildMetadata(lang: Lang): Metadata {
   const title = `${RESUME_DATA.name} · ${t(RESUME_DATA.headline, lang)}`;
-  const description = t(RESUME_DATA.tagline, lang);
+  const description = t(RESUME_DATA.seoDescription, lang);
   return {
     metadataBase: new URL(SITE_URL),
     title,
     description,
     alternates: {
       canonical: LANG_PATH[lang],
-      languages: { fr: LANG_PATH.fr, en: LANG_PATH.en },
+      languages: {
+        fr: LANG_PATH.fr,
+        en: LANG_PATH.en,
+        "x-default": LANG_PATH.en,
+      },
     },
     openGraph: {
       type: "profile",
@@ -35,9 +46,19 @@ export function buildMetadata(lang: Lang): Metadata {
   };
 }
 
-export function RootLayout({ lang, children }: { lang: Lang; children: React.ReactNode }) {
+export function RootLayout({
+  lang,
+  children,
+}: {
+  lang: Lang;
+  children: React.ReactNode;
+}) {
   return (
-    <html lang={lang} className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html
+      lang={lang}
+      className={`${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       {/* biome-ignore lint/style/noHeadElement: <head> is valid in an App Router root layout */}
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: constant script, must run before paint */}

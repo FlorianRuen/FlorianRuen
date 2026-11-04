@@ -32,7 +32,14 @@ export async function renderOgImage(lang: Lang) {
         fontFamily: "sans-serif",
       }}
     >
-      <div style={{ display: "flex", fontSize: 26, color: "#61a6fa", letterSpacing: 1 }}>
+      <div
+        style={{
+          display: "flex",
+          fontSize: 26,
+          color: "#61a6fa",
+          letterSpacing: 1,
+        }}
+      >
         ~/{RESUME_DATA.name.toLowerCase().replace(" ", "-")}
       </div>
 
@@ -46,13 +53,26 @@ export async function renderOgImage(lang: Lang) {
           style={{ borderRadius: 32, border: "2px solid #2a3a57" }}
         />
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1 }}>{RESUME_DATA.name}</div>
-          <div style={{ fontSize: 38, color: "#61a6fa" }}>{t(RESUME_DATA.headline, lang)}</div>
-          <div style={{ fontSize: 26, color: "#a2b0c3", maxWidth: 720 }}>{t(RESUME_DATA.tagline, lang)}</div>
+          <div style={{ fontSize: 76, fontWeight: 700, lineHeight: 1 }}>
+            {RESUME_DATA.name}
+          </div>
+          <div style={{ fontSize: 38, color: "#61a6fa" }}>
+            {t(RESUME_DATA.headline, lang)}
+          </div>
+          <div style={{ fontSize: 26, color: "#a2b0c3", maxWidth: 720 }}>
+            {t(RESUME_DATA.tagline, lang)}
+          </div>
         </div>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#a2b0c3" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          fontSize: 24,
+          color: "#a2b0c3",
+        }}
+      >
         <span>{FOOTER[lang]}</span>
         <span style={{ color: "#f1f5f9" }}>{current.company}</span>
       </div>

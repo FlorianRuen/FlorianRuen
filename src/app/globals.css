@@ -5,7 +5,8 @@
 
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-mono:
+    var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -245,7 +246,8 @@
   }
 
   .cv-edu,
-  .cv-skill-group {
+  .cv-skill-group,
+  .cv-interests {
     break-inside: avoid;
   }
   .cv-skill-group + .cv-skill-group,
@@ -508,5 +510,18 @@
     animation: none !important;
     /* biome-ignore lint/complexity/noImportantStyles: must beat every transition rule */
     transition: none !important;
+  }
+}
+
+/* Command palette (native <dialog>): fades and rises in when opened. */
+@media (prefers-reduced-motion: no-preference) {
+  .palette[open] {
+    animation: palette-in 0.18s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+@keyframes palette-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
   }
 }

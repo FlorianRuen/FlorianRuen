@@ -11,7 +11,8 @@ export const RESUME_DATA = {
   name: "Florian Ruen",
   initials: "FR",
   location: { fr: "Paris, France", en: "Paris, France" },
-  locationLink: "https://www.google.com/maps/search/?api=1&query=Paris%2C+France",
+  locationLink:
+    "https://www.google.com/maps/search/?api=1&query=Paris%2C+France",
   /** Served from /public, so it is fast and can't change by accident. */
   avatarUrl: "/avatar.jpg",
 
@@ -23,6 +24,11 @@ export const RESUME_DATA = {
     fr: "Ingénieur logiciel et entrepreneur, passionné par l'IA, l'innovation et les produits qui partent de zéro.",
     en: "Software engineer and founder, passionate about AI, innovation and building products from zero.",
   },
+  /** Search-result snippet: name, role and city first, under ~155 characters. */
+  seoDescription: {
+    fr: "Florian Ruen, IT Technical Leader chez OVHcloud à Paris. Ingénieur logiciel et fondateur d'une startup d'IA primée, 8+ ans à construire des produits.",
+    en: "Florian Ruen, IT Technical Leader at OVHcloud in Paris. Software engineer and founder of an award-winning AI startup, 8+ years building products.",
+  },
   summary: {
     fr: "Ingénieur informatique, j'ai passé plus de 8 ans à concevoir et lancer des produits : d'abord en fondant et dirigeant ma propre startup d'IA, primée pour son innovation, puis en prenant la direction technique d'une solution Web3, avant de rejoindre OVHcloud, où j'occupe aujourd'hui le poste d'IT Technical Leader. J'aime transformer des idées en produits concrets, robustes et utiles, accompagner les équipes dans leurs choix techniques et explorer ce que l'IA change dans notre façon de construire des logiciels.",
     en: "I'm a computer engineer who has spent 8+ years designing and launching products: first by founding and running my own award-winning AI startup, then by leading software at a Web3 company, before joining OVHcloud, where I'm now an IT Technical Leader. I love turning ideas into concrete, reliable and useful products, helping teams make sound technical decisions, and exploring how AI is changing the way we build software.",
@@ -31,7 +37,10 @@ export const RESUME_DATA = {
   highlights: [
     {
       value: { fr: "8+", en: "8+" },
-      label: { fr: "ans à construire des logiciels", en: "years building software" },
+      label: {
+        fr: "ans à construire des logiciels",
+        en: "years building software",
+      },
     },
     {
       value: { fr: "~1M", en: "~1M" },
@@ -110,7 +119,16 @@ export const RESUME_DATA = {
           ],
         },
       ],
-      tech: ["Go", "TypeScript", "React", "PostgreSQL", "CI/CD"],
+      tech: [
+        "Go",
+        "CI/CD",
+        "Kubernetes",
+        "PostgreSQL",
+        "Artifactory",
+        "Bitbucket",
+        "Grafana",
+        "Claude Code",
+      ],
     },
     {
       company: "CIDgravity",
@@ -145,7 +163,7 @@ export const RESUME_DATA = {
             },
             {
               fr: "Lauréat du Prix de l'innovation Préventica 2021 et finaliste du concours La Tribune « 10 000 startups pour changer le monde ».",
-              en: "Winner of the 2021 Préventica Innovation Award and finalist of La Tribune's \"10,000 startups to change the world\" competition.",
+              en: 'Winner of the 2021 Préventica Innovation Award and finalist of La Tribune\'s "10,000 startups to change the world" competition.',
             },
             {
               fr: "Direction de l'entreprise et de la technique, du premier prototype jusqu'au produit, dont une application de remontée des situations à risque.",
@@ -159,12 +177,30 @@ export const RESUME_DATA = {
         label: { fr: "Dans les médias", en: "In the press" },
         items: [
           { name: "Europe 1 · La France bouge", url: null },
-          { name: "Ouest-France", url: "https://www.ouest-france.fr/economie/entreprises/entreprise-eyes-r-la-startup-francaise-leader-de-la-prevention-des-risques-au-travail-7608639" },
-          { name: "Maddyness", url: "https://www.maddyness.com/2022/06/09/maddytools-eyesr-cameras-detecter-risques-accident-entreprise/" },
-          { name: "Radio France", url: "https://www.radiofrance.fr/ici/podcasts/la-nouvelle-eco/la-nouvelle-eco-eye-sr-l-intelligence-artificielle-au-service-de-la-securite-des-salaries-7693925" },
-          { name: "La République du Centre", url: "https://www.larep.fr/montargis-45200/economie/eyes-r-la-societe-creatrice-de-la-camera-qui-repere-si-le-port-du-masque-est-respecte-au-sein-des-entreprises-uniquement_13895438" },
-          { name: "Prévention BTP", url: "https://www.preventionbtp.fr/actualites/equipements/une-application-de-remontee-de-situations-a-risque_22dXZLYbQ8a7peHPXW56yk" },
-          { name: "Inforisque", url: "https://inforisque.fr/actualites/detail/34214-lancement-de-lapplication-de-remontee-des-situations-a-risques-eyesr/" },
+          {
+            name: "Ouest-France",
+            url: "https://www.ouest-france.fr/economie/entreprises/entreprise-eyes-r-la-startup-francaise-leader-de-la-prevention-des-risques-au-travail-7608639",
+          },
+          {
+            name: "Maddyness",
+            url: "https://www.maddyness.com/2022/06/09/maddytools-eyesr-cameras-detecter-risques-accident-entreprise/",
+          },
+          {
+            name: "Radio France",
+            url: "https://www.radiofrance.fr/ici/podcasts/la-nouvelle-eco/la-nouvelle-eco-eye-sr-l-intelligence-artificielle-au-service-de-la-securite-des-salaries-7693925",
+          },
+          {
+            name: "La République du Centre",
+            url: "https://www.larep.fr/montargis-45200/economie/eyes-r-la-societe-creatrice-de-la-camera-qui-repere-si-le-port-du-masque-est-respecte-au-sein-des-entreprises-uniquement_13895438",
+          },
+          {
+            name: "Prévention BTP",
+            url: "https://www.preventionbtp.fr/actualites/equipements/une-application-de-remontee-de-situations-a-risque_22dXZLYbQ8a7peHPXW56yk",
+          },
+          {
+            name: "Inforisque",
+            url: "https://inforisque.fr/actualites/detail/34214-lancement-de-lapplication-de-remontee-des-situations-a-risques-eyesr/",
+          },
         ],
       },
     },
@@ -193,8 +229,31 @@ export const RESUME_DATA = {
 
   skills: [
     {
+      category: { fr: "Savoir-être", en: "Soft skills" },
+      items: [
+        { fr: "Leadership", en: "Leadership" },
+        { fr: "Mentorat", en: "Mentoring" },
+        { fr: "Communication claire", en: "Clear communication" },
+        { fr: "Prise de décision", en: "Decision-making" },
+        { fr: "Esprit entrepreneurial", en: "Entrepreneurial mindset" },
+        { fr: "Travail d'équipe", en: "Teamwork" },
+        { fr: "Adaptabilité", en: "Adaptability" },
+        { fr: "Autonomie", en: "Autonomy" },
+        { fr: "Esprit critique", en: "Critical thinking" },
+      ],
+    },
+    {
       category: { fr: "Langages", en: "Languages" },
-      items: ["Go", "TypeScript", "Python", "Java", "Kotlin", "C#", "PHP", "VB.net"],
+      items: [
+        "Go",
+        "TypeScript",
+        "Python",
+        "Java",
+        "Kotlin",
+        "C#",
+        "PHP",
+        "VB.net",
+      ],
     },
     {
       category: { fr: "Frontend", en: "Frontend" },
@@ -202,23 +261,25 @@ export const RESUME_DATA = {
     },
     {
       category: { fr: "Backend & données", en: "Backend & data" },
-      items: ["REST APIs", "PostgreSQL", "MongoDB", "Gradle"],
+      items: [
+        "REST APIs",
+        { fr: "Architecture logicielle", en: "Software architecture" },
+        "PostgreSQL",
+        "MongoDB",
+        "Gradle",
+      ],
     },
     {
       category: { fr: "Cloud & DevOps", en: "Cloud & DevOps" },
-      items: ["OVHcloud", "AWS", "Docker", "CI/CD"],
+      items: ["OVHcloud", "AWS", "Kubernetes", "Docker", "CI/CD", "Grafana"],
     },
     {
       category: { fr: "IA", en: "AI" },
-      items: ["Machine Learning", "LLMs", "AI-assisted development"],
-    },
-    {
-      category: { fr: "Leadership", en: "Leadership" },
       items: [
-        { fr: "Leadership technique", en: "Technical leadership" },
-        { fr: "Architecture logicielle", en: "Software architecture" },
-        { fr: "Entrepreneuriat", en: "Entrepreneurship" },
-        { fr: "Travail d'équipe", en: "Teamwork" },
+        "Machine Learning",
+        "LLMs",
+        "Claude Code",
+        "AI-assisted development",
       ],
     },
     {
@@ -297,5 +358,13 @@ export const RESUME_DATA = {
       },
       link: undefined,
     },
+  ],
+
+  interests: [
+    { fr: "Investissement dans les startups", en: "Startup investing" },
+    { fr: "Tennis", en: "Tennis" },
+    { fr: "VTT", en: "Mountain biking" },
+    { fr: "Musique", en: "Music" },
+    { fr: "Cuisine", en: "Cooking" },
   ],
 } as const;

@@ -18,23 +18,25 @@ function applyToggle() {
   }
 }
 
-export function ThemeToggle({ label }: { label: string }) {
-  const toggle = () => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // Cross-fade the whole page where the View Transitions API exists; instant otherwise.
-    if (!reduceMotion && document.startViewTransition) {
-      document.startViewTransition(applyToggle);
-    } else {
-      applyToggle();
-    }
-  };
+/** Switches light/dark, with a cross-fade where the View Transitions API exists. */
+export function toggleTheme() {
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  if (!reduceMotion && document.startViewTransition) {
+    document.startViewTransition(applyToggle);
+  } else {
+    applyToggle();
+  }
+}
 
+export function ThemeToggle({ label }: { label: string }) {
   return (
     <Button
       variant="ghost"
       size="icon"
       className="size-8"
-      onClick={toggle}
+      onClick={toggleTheme}
       aria-label={label}
       title={label}
     >

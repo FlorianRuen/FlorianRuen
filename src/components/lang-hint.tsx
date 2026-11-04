@@ -8,9 +8,17 @@ const DISMISS_KEY = "lang-hint-dismissed";
 
 const MESSAGE: Record<Lang, { text: string; action: string; close: string }> = {
   // Shown on the English page to French-speaking visitors (so written in French).
-  fr: { text: "Ce CV est aussi disponible en français.", action: "Voir en français", close: "Fermer" },
+  fr: {
+    text: "Ce CV est aussi disponible en français.",
+    action: "Voir en français",
+    close: "Fermer",
+  },
   // Shown on the French page to everyone else (so written in English).
-  en: { text: "This resume is also available in English.", action: "View in English", close: "Close" },
+  en: {
+    text: "This resume is also available in English.",
+    action: "View in English",
+    close: "Close",
+  },
 };
 
 /**
@@ -26,7 +34,9 @@ export function LangHint({ lang }: { lang: Lang }) {
     } catch {
       // Storage unavailable: still show the hint, it just won't be remembered.
     }
-    const prefersFrench = navigator.languages.some((l) => l.toLowerCase().startsWith("fr"));
+    const prefersFrench = navigator.languages.some((l) =>
+      l.toLowerCase().startsWith("fr"),
+    );
     const other: Lang = lang === "en" ? "fr" : "en";
     if ((other === "fr") === prefersFrench) setSuggest(other);
   }, [lang]);
@@ -44,11 +54,18 @@ export function LangHint({ lang }: { lang: Lang }) {
 
   const msg = MESSAGE[suggest];
   return (
-    <div lang={suggest} className="slide-down border-b border-border/60 bg-primary/5 print:hidden">
+    <div
+      lang={suggest}
+      className="slide-down border-b border-border/60 bg-primary/5 print:hidden"
+    >
       <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-2 text-sm sm:px-6">
         <p className="text-muted-foreground">
           {msg.text}{" "}
-          <a href={LANG_PATH[suggest]} hrefLang={suggest} className="font-medium text-primary hover:underline">
+          <a
+            href={LANG_PATH[suggest]}
+            hrefLang={suggest}
+            className="font-medium text-primary hover:underline"
+          >
             {msg.action} →
           </a>
         </p>

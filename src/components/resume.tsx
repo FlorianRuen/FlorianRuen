@@ -2,6 +2,7 @@ import {
   MailIcon,
   MapPinIcon,
   PhoneIcon,
+  UserPlusIcon,
   ArrowUpRightIcon,
   CodeIcon,
 } from "lucide-react";
@@ -9,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CareerChart } from "@/components/career-chart";
+import { CommandPalette } from "@/components/command-palette";
 import { ConsoleGreeting, SOURCE_URL } from "@/components/console-greeting";
 import { CopyButton } from "@/components/copy-button";
 import { LangHint } from "@/components/lang-hint";
@@ -94,6 +96,11 @@ export function Resume({ lang }: { lang: Lang }) {
       addressCountry: "FR",
     },
     sameAs: D.contact.social.map((s) => s.url),
+    alumniOf: [{ "@type": "CollegeOrUniversity", name: "Polytech Sorbonne" }],
+    knowsLanguage: ["fr", "en"],
+    knowsAbout: D.skills
+      .filter((group) => group.category.en !== "Soft skills")
+      .flatMap((group) => group.items.map((item) => t(item, lang))),
   };
 
   return (
@@ -134,6 +141,7 @@ export function Resume({ lang }: { lang: Lang }) {
                   {otherLang.toUpperCase()}
                 </a>
               </Button>
+              <CommandPalette lang={lang} />
               <ThemeToggle label={ui.toggleTheme} />
             </div>
           </div>
@@ -189,6 +197,14 @@ export function Resume({ lang }: { lang: Lang }) {
                     label={ui.copyEmail}
                     copiedLabel={ui.copied}
                   />
+                  <a
+                    href="/vcard"
+                    aria-label={ui.saveContact}
+                    title={ui.saveContact}
+                    className="-m-1 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground print:hidden"
+                  >
+                    <UserPlusIcon className="size-3.5" />
+                  </a>
                 </li>
                 <li>
                   <a
@@ -272,7 +288,7 @@ export function Resume({ lang }: { lang: Lang }) {
           </section>
 
           {/* About */}
-          <section className="reveal">
+          <section id="about" className="reveal scroll-mt-20">
             <SectionTitle index={1}>{ui.about}</SectionTitle>
             <p className="leading-relaxed text-pretty text-muted-foreground">
               {t(D.summary, lang)}
@@ -280,7 +296,7 @@ export function Resume({ lang }: { lang: Lang }) {
           </section>
 
           {/* Experience */}
-          <section className="reveal">
+          <section id="experience" className="reveal scroll-mt-20">
             <SectionTitle index={2}>{ui.experience}</SectionTitle>
             <ol className="timeline relative ml-1.5 space-y-10 border-l border-border pl-6 print:space-y-5">
               {D.work.map((job, jobIndex) => {
@@ -390,7 +406,10 @@ export function Resume({ lang }: { lang: Lang }) {
           </section>
 
           {/* Skills */}
-          <section className="reveal break-inside-avoid">
+          <section
+            id="skills"
+            className="reveal scroll-mt-20 break-inside-avoid"
+          >
             <SectionTitle index={3}>{ui.skills}</SectionTitle>
             <dl className="space-y-4 print:space-y-2">
               {D.skills.map((group) => (
@@ -413,7 +432,10 @@ export function Resume({ lang }: { lang: Lang }) {
           </section>
 
           {/* Education */}
-          <section className="reveal break-inside-avoid">
+          <section
+            id="education"
+            className="reveal scroll-mt-20 break-inside-avoid"
+          >
             <SectionTitle index={4}>{ui.education}</SectionTitle>
             <ul className="space-y-4">
               {D.education.map((edu) => (
@@ -436,7 +458,10 @@ export function Resume({ lang }: { lang: Lang }) {
           </section>
 
           {/* Projects */}
-          <section className="reveal break-inside-avoid">
+          <section
+            id="projects"
+            className="reveal scroll-mt-20 break-inside-avoid"
+          >
             <SectionTitle index={5}>{ui.projects}</SectionTitle>
             <div className="grid gap-3 sm:grid-cols-3">
               {D.projects.map((project) => (
@@ -456,6 +481,21 @@ export function Resume({ lang }: { lang: Lang }) {
                 </div>
               ))}
             </div>
+          </section>
+
+          {/* Interests */}
+          <section
+            id="interests"
+            className="reveal scroll-mt-20 break-inside-avoid"
+          >
+            <SectionTitle index={6}>{ui.interests}</SectionTitle>
+            <ul className="flex flex-wrap gap-2">
+              {D.interests.map((item) => (
+                <li key={item.en}>
+                  <Chip>{t(item, lang)}</Chip>
+                </li>
+              ))}
+            </ul>
           </section>
         </main>
 
@@ -491,9 +531,20 @@ export function Resume({ lang }: { lang: Lang }) {
               <a
                 href={lang === "fr" ? "/cv/fr" : "/cv"}
                 className="transition-colors hover:text-primary"
-                title={`curl ${SITE_URL.replace(/^https?:\/\//, "")}${lang === "fr" ? "/cv/fr" : "/cv"}`}
+                title={`curl ${SITE_URL}${lang === "fr" ? "/cv/fr" : "/cv"}`}
               >
                 $ curl
+              </a>
+              <a
+                href="/llms.txt"
+                className="transition-colors hover:text-primary"
+                title={
+                  lang === "fr"
+                    ? "Mon CV pour les assistants IA"
+                    : "My resume for AI assistants"
+                }
+              >
+                llms.txt
               </a>
             </nav>
           </div>
