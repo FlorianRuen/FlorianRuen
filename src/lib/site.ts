@@ -4,7 +4,8 @@
  * local and preview builds, so nothing ever points to localhost or *.vercel.app.
  * Set NEXT_PUBLIC_SITE_URL to override it (no trailing slash).
  */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://florianruen.fr";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://florianruen.fr";
 
 /** Build time = last deploy, shown as "last updated" on the page and the PDF. */
 export const BUILD_DATE = new Date();

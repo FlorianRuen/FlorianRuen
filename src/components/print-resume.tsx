@@ -98,6 +98,13 @@ export function PrintResume({ lang }: { lang: Lang }) {
               </div>
             ))}
           </section>
+
+          <section>
+            <SideTitle>{ui.interests}</SideTitle>
+            <p className="cv-interests">
+              {D.interests.map((item) => t(item, lang)).join(" · ")}
+            </p>
+          </section>
         </aside>
 
         {/* Main column */}

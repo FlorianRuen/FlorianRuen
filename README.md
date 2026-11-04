@@ -19,7 +19,7 @@ var florian = Engineer{
 	Role:      "IT Technical Leader @ OVHcloud",
 	Location:  "Paris, France",
 	Path:      []string{"Founder & CTO (5 yrs)", "Head of Software", "IT Technical Leader"},
-	Stack:     []string{"Go", "TypeScript", "React", "PostgreSQL", "Python"},
+	Stack:     []string{"Go", "Kubernetes", "PostgreSQL", "TypeScript", "React"},
 	Leads:     []string{"0 → 1 products", "architecture decisions", "growing engineers"},
 	Exploring: []string{"LLMs", "AI-assisted development", "developer experience"},
 }
@@ -36,7 +36,7 @@ Founded an award-winning AI startup · Lead an API handling ~1M requests/day · 
 
 ### Ask me about
 
-0 → 1 products · life as a startup CTO · API & platform design · bringing AI into dev teams
+0 → 1 products · life as a startup CTO · API & platform design · computer vision products
 
 ### Toolbox
 
@@ -49,6 +49,7 @@ Founded an award-winning AI startup · Lead an API handling ~1M requests/day · 
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white)
 ![OVHcloud](https://img.shields.io/badge/OVHcloud-123F6D?style=flat&logo=ovh&logoColor=white)
 
 ### Let's talk

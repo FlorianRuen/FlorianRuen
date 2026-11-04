@@ -20,7 +20,9 @@ function applyToggle() {
 
 export function ThemeToggle({ label }: { label: string }) {
   const toggle = () => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     // Cross-fade the whole page where the View Transitions API exists; instant otherwise.
     if (!reduceMotion && document.startViewTransition) {
       document.startViewTransition(applyToggle);

@@ -39,7 +39,13 @@ function buildRows(lang: Lang): Row[] {
     .map((edu) => ({
       label: edu.school,
       segments: [
-        { key: edu.degree.en, label: t(edu.degree, lang), start: edu.start, end: edu.end, tone: "study" },
+        {
+          key: edu.degree.en,
+          label: t(edu.degree, lang),
+          start: edu.start,
+          end: edu.end,
+          tone: "study",
+        },
       ],
     }));
 
@@ -82,13 +88,16 @@ export function CareerChart({ lang }: { lang: Lang }) {
   return (
     <figure className="overflow-x-clip rounded-xl border border-border bg-card p-4 sm:p-5 print:hidden">
       <figcaption className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+        <span className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">
           {ui.careerTitle}
         </span>
         <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
           {legend.map((item) => (
             <li key={item.tone} className="inline-flex items-center gap-1.5">
-              <span aria-hidden className={cn("h-2 w-3 rounded-[2px]", TONE_CLASS[item.tone])} />
+              <span
+                aria-hidden
+                className={cn("h-2 w-3 rounded-[2px]", TONE_CLASS[item.tone])}
+              />
               {item.label}
             </li>
           ))}
@@ -123,7 +132,10 @@ export function CareerChart({ lang }: { lang: Lang }) {
             >
               {row.label}
             </div>
-            <div className="relative col-start-2 h-4" style={{ gridRow: rowIndex + 1 }}>
+            <div
+              className="relative col-start-2 h-4"
+              style={{ gridRow: rowIndex + 1 }}
+            >
               {row.segments.map((seg, segIndex) => {
                 const left = pct(toYear(seg.start, "start"));
                 const right = pct(toYear(seg.end, "end"));
@@ -158,8 +170,12 @@ export function CareerChart({ lang }: { lang: Lang }) {
                         left + (right - left) / 2 > 50 ? "right-0" : "left-0",
                       )}
                     >
-                      <span className="block text-xs font-medium text-foreground">{row.label}</span>
-                      <span className="block text-xs text-muted-foreground">{seg.label}</span>
+                      <span className="block text-xs font-medium text-foreground">
+                        {row.label}
+                      </span>
+                      <span className="block text-xs text-muted-foreground">
+                        {seg.label}
+                      </span>
                       <span className="mt-0.5 block font-mono text-[10px] text-muted-foreground">
                         {dates}
                       </span>
@@ -172,12 +188,16 @@ export function CareerChart({ lang }: { lang: Lang }) {
         ))}
 
         {/* Axis */}
-        <div className="relative col-start-2 h-4" style={{ gridRow: rows.length + 1 }} aria-hidden>
+        <div
+          className="relative col-start-2 h-4"
+          style={{ gridRow: rows.length + 1 }}
+          aria-hidden
+        >
           {ticks.map((y) => (
             <span
               key={y}
               className={cn(
-                "absolute -translate-x-1/2 font-mono text-[10px] tabular-nums text-muted-foreground",
+                "absolute -translate-x-1/2 font-mono text-[10px] text-muted-foreground tabular-nums",
                 // On phones, show every other tick (2014, 2018, 2022, 2026) so labels never touch.
                 ((y - AXIS_START - 1) / 2) % 2 === 1 && "max-sm:hidden",
               )}

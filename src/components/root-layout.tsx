@@ -8,9 +8,16 @@ import { SITE_URL } from "@/lib/site";
 
 import "@/app/globals.css";
 
-const sans = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
-const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--font-jetbrains-mono" });
-
+const sans = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+});
 
 export function buildMetadata(lang: Lang): Metadata {
   const title = `${RESUME_DATA.name} · ${t(RESUME_DATA.headline, lang)}`;
@@ -35,9 +42,19 @@ export function buildMetadata(lang: Lang): Metadata {
   };
 }
 
-export function RootLayout({ lang, children }: { lang: Lang; children: React.ReactNode }) {
+export function RootLayout({
+  lang,
+  children,
+}: {
+  lang: Lang;
+  children: React.ReactNode;
+}) {
   return (
-    <html lang={lang} className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html
+      lang={lang}
+      className={`${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
       {/* biome-ignore lint/style/noHeadElement: <head> is valid in an App Router root layout */}
       <head>
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: constant script, must run before paint */}

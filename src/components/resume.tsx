@@ -457,6 +457,18 @@ export function Resume({ lang }: { lang: Lang }) {
               ))}
             </div>
           </section>
+
+          {/* Interests */}
+          <section className="reveal break-inside-avoid">
+            <SectionTitle index={6}>{ui.interests}</SectionTitle>
+            <ul className="flex flex-wrap gap-2">
+              {D.interests.map((item) => (
+                <li key={item.en}>
+                  <Chip>{t(item, lang)}</Chip>
+                </li>
+              ))}
+            </ul>
+          </section>
         </main>
 
         <footer className="border-t border-border/60 print:hidden">

@@ -79,6 +79,7 @@ export function toJsonResume(lang: Lang = "en") {
       description: t(p.description, lang),
       keywords: p.tags.map((tag) => t(tag, lang)),
     })),
+    interests: D.interests.map((item) => ({ name: t(item, lang) })),
     meta: {
       canonical: `${SITE_URL}/resume.json`,
       lastModified: new Date().toISOString(),
@@ -143,7 +144,10 @@ export function toText(lang: Lang = "en"): string {
   section(fr ? "Expérience" : "Experience");
   D.work.forEach((job, i) => {
     if (i > 0) out.push("");
-    out.push(spread(job.company, job.tech.join(", ")));
+    const tech = job.tech.join(", ");
+    if (job.company.length + tech.length + 2 <= WIDTH)
+      out.push(spread(job.company, tech));
+    else out.push(job.company, wrap(tech, "  "));
     if ("summary" in job) out.push(wrap(t(job.summary, lang), "  "));
     for (const role of job.roles) {
       out.push(
@@ -190,6 +194,9 @@ export function toText(lang: Lang = "en"): string {
   section(fr ? "Projets & bénévolat" : "Projects & volunteering");
   for (const p of D.projects)
     out.push(wrap(`${p.title} — ${t(p.description, lang)}`, "  "));
+
+  section(fr ? "Centres d'intérêt" : "Interests");
+  out.push(wrap(D.interests.map((item) => t(item, lang)).join(" · ")));
 
   out.push(
     "",
