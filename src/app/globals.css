@@ -512,3 +512,16 @@
     transition: none !important;
   }
 }
+
+/* Command palette (native <dialog>): fades and rises in when opened. */
+@media (prefers-reduced-motion: no-preference) {
+  .palette[open] {
+    animation: palette-in 0.18s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+@keyframes palette-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}

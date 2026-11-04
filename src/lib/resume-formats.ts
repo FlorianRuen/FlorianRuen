@@ -215,3 +215,115 @@ export function toText(lang: Lang = "en"): string {
   );
   return out.join("\n");
 }
+
+/* ------------------------------------------------------------- llms.txt -- */
+
+/**
+ * /llms.txt (https://llmstxt.org): a Markdown summary for AI assistants, so a
+ * chatbot or a recruiter's screening tool asked about me reads accurate facts
+ * instead of scraped HTML. Always English, the lingua franca for these tools.
+ */
+export function toLlmsTxt(): string {
+  const lang: Lang = "en";
+  const list = (items: string[]) => items.map((i) => `- ${i}`).join("\n");
+
+  const work = D.work
+    .map((job) => {
+      const roles = job.roles
+        .map(
+          (role) =>
+            `- **${t(role.title, lang)}** (${formatDate(role.start, lang)} – ${formatDate(role.end, lang)})\n${role.bullets
+              .map((b) => `  - ${t(b, lang)}`)
+              .join("\n")}`,
+        )
+        .join("\n");
+      const summary = "summary" in job ? `\n${t(job.summary, lang)}\n` : "";
+      const press =
+        "press" in job
+          ? `\nPress coverage: ${job.press.items.map((p) => p.name).join(", ")}.\n`
+          : "";
+      return `### ${job.company}\nTech: ${job.tech.join(", ")}\n${summary}\n${roles}\n${press}`;
+    })
+    .join("\n");
+
+  return `# ${D.name}
+
+> ${t(D.headline, lang)}, based in ${t(D.location, lang)}. ${t(D.tagline, lang)}
+
+${t(D.summary, lang)}
+
+## Key facts
+
+${list(D.highlights.map((h) => `${t(h.value, lang)} ${t(h.label, lang)}`))}
+- Languages: French (native), English (professional)
+- Contact: ${D.contact.email}
+
+## Experience
+
+${work}
+## Skills
+
+${list(
+  D.skills.map(
+    (g) =>
+      `${t(g.category, lang)}: ${g.items.map((item) => t(item, lang)).join(", ")}`,
+  ),
+)}
+
+## Education
+
+${list(D.education.map((e) => `${e.school}: ${t(e.degree, lang)} (${e.start} – ${e.end})`))}
+
+## Projects & volunteering
+
+${list(D.projects.map((p) => `${p.title}: ${t(p.description, lang)}`))}
+
+## Interests
+
+${D.interests.map((i) => t(i, lang)).join(", ")}
+
+## Links
+
+- [Resume (English)](${SITE_URL}/): full resume, also downloadable as PDF
+- [Resume (French)](${SITE_URL}/fr): same content in French
+- [Plain text](${SITE_URL}/cv): \`curl ${SITE_URL}/cv\`
+- [JSON Resume](${SITE_URL}/resume.json): machine-readable, jsonresume.org schema
+${D.contact.social.map((s) => `- [${s.name}](${s.url})`).join("\n")}
+`;
+}
+
+/* ---------------------------------------------------------------- vCard -- */
+
+/** Escapes a vCard text value (RFC 6350 §3.4). */
+const vc = (value: string) =>
+  value.replace(/\\/g, "\\\\").replace(/,/g, "\\,").replace(/;/g, "\\;");
+
+/** vCard 3.0 contact card, so recruiters can save me to their phone in one tap. */
+export function toVCard(avatarBase64?: string): string {
+  const [first, ...rest] = D.name.split(" ");
+  const current = D.work[0];
+  const lines = [
+    "BEGIN:VCARD",
+    "VERSION:3.0",
+    `N:${vc(rest.join(" "))};${vc(first)};;;`,
+    `FN:${vc(D.name)}`,
+    `ORG:${vc(current.company)}`,
+    `TITLE:${vc(t(current.roles[0].title, "en"))}`,
+    `EMAIL;TYPE=INTERNET:${D.contact.email}`,
+    `TEL;TYPE=CELL:${D.contact.tel}`,
+    "ADR;TYPE=WORK:;;;Paris;;;France",
+    `URL:${SITE_URL}`,
+    ...D.contact.social.map(
+      (s) => `X-SOCIALPROFILE;TYPE=${s.name.toLowerCase()}:${s.url}`,
+    ),
+    ...(avatarBase64 ? [`PHOTO;ENCODING=b;TYPE=JPEG:${avatarBase64}`] : []),
+    `NOTE:${vc(t(D.tagline, "en"))}`,
+    "END:VCARD",
+  ];
+  // vCard wants CRLF line endings and lines folded at 75 characters (RFC 6350 §3.2).
+  const fold = (line: string) =>
+    line.length <= 75
+      ? line
+      : (line.match(/^.{75}|.{1,74}/g) ?? [line]).join("\r\n ");
+  return `${lines.map(fold).join("\r\n")}\r\n`;
+}
