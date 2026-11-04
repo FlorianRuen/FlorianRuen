@@ -94,6 +94,11 @@ export function Resume({ lang }: { lang: Lang }) {
       addressCountry: "FR",
     },
     sameAs: D.contact.social.map((s) => s.url),
+    alumniOf: [{ "@type": "CollegeOrUniversity", name: "Polytech Sorbonne" }],
+    knowsLanguage: ["fr", "en"],
+    knowsAbout: D.skills
+      .filter((group) => group.category.en !== "Soft skills")
+      .flatMap((group) => group.items.map((item) => t(item, lang))),
   };
 
   return (

@@ -21,14 +21,18 @@ const mono = JetBrains_Mono({
 
 export function buildMetadata(lang: Lang): Metadata {
   const title = `${RESUME_DATA.name} · ${t(RESUME_DATA.headline, lang)}`;
-  const description = t(RESUME_DATA.tagline, lang);
+  const description = t(RESUME_DATA.seoDescription, lang);
   return {
     metadataBase: new URL(SITE_URL),
     title,
     description,
     alternates: {
       canonical: LANG_PATH[lang],
-      languages: { fr: LANG_PATH.fr, en: LANG_PATH.en },
+      languages: {
+        fr: LANG_PATH.fr,
+        en: LANG_PATH.en,
+        "x-default": LANG_PATH.en,
+      },
     },
     openGraph: {
       type: "profile",

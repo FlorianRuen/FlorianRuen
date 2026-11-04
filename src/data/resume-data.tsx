@@ -24,6 +24,11 @@ export const RESUME_DATA = {
     fr: "Ingénieur logiciel et entrepreneur, passionné par l'IA, l'innovation et les produits qui partent de zéro.",
     en: "Software engineer and founder, passionate about AI, innovation and building products from zero.",
   },
+  /** Search-result snippet: name, role and city first, under ~155 characters. */
+  seoDescription: {
+    fr: "Florian Ruen, IT Technical Leader chez OVHcloud à Paris. Ingénieur logiciel et fondateur d'une startup d'IA primée, 8+ ans à construire des produits.",
+    en: "Florian Ruen, IT Technical Leader at OVHcloud in Paris. Software engineer and founder of an award-winning AI startup, 8+ years building products.",
+  },
   summary: {
     fr: "Ingénieur informatique, j'ai passé plus de 8 ans à concevoir et lancer des produits : d'abord en fondant et dirigeant ma propre startup d'IA, primée pour son innovation, puis en prenant la direction technique d'une solution Web3, avant de rejoindre OVHcloud, où j'occupe aujourd'hui le poste d'IT Technical Leader. J'aime transformer des idées en produits concrets, robustes et utiles, accompagner les équipes dans leurs choix techniques et explorer ce que l'IA change dans notre façon de construire des logiciels.",
     en: "I'm a computer engineer who has spent 8+ years designing and launching products: first by founding and running my own award-winning AI startup, then by leading software at a Web3 company, before joining OVHcloud, where I'm now an IT Technical Leader. I love turning ideas into concrete, reliable and useful products, helping teams make sound technical decisions, and exploring how AI is changing the way we build software.",
