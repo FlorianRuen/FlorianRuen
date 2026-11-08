@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { RESUME_DATA } from "@/data/resume-data";
 
+// Built once at deploy time (static export for GitHub Pages).
+export const dynamic = "force-static";
+
 /** Web app manifest: name, colours and icon when the site is saved to a home screen. */
 export default function manifest(): MetadataRoute.Manifest {
   return {

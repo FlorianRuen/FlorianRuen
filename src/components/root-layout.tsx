@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { THEME_INIT_SCRIPT } from "@/components/theme-toggle";
 import { RESUME_DATA } from "@/data/resume-data";
 import { LANG_PATH, t, type Lang } from "@/lib/i18n";
+import { OG_SIZE } from "@/lib/og-image";
 import { SITE_URL } from "@/lib/site";
 
 import "@/app/globals.css";
@@ -22,6 +22,11 @@ const mono = JetBrains_Mono({
 export function buildMetadata(lang: Lang): Metadata {
   const title = `${RESUME_DATA.name} · ${t(RESUME_DATA.headline, lang)}`;
   const description = t(RESUME_DATA.seoDescription, lang);
+  const image = {
+    url: `/og-${lang}.png`,
+    ...OG_SIZE,
+    alt: `${RESUME_DATA.name} – ${t(RESUME_DATA.headline, lang)}`,
+  };
   return {
     metadataBase: new URL(SITE_URL),
     title,
@@ -41,8 +46,14 @@ export function buildMetadata(lang: Lang): Metadata {
       url: LANG_PATH[lang],
       locale: lang === "fr" ? "fr_FR" : "en_US",
       alternateLocale: lang === "fr" ? "en_US" : "fr_FR",
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
   };
 }
 
@@ -66,7 +77,6 @@ export function RootLayout({
       </head>
       <body className="font-sans antialiased">
         {children}
-        <Analytics />
       </body>
     </html>
   );

@@ -220,6 +220,20 @@ export const RESUME_DATA = {
         },
       ],
       tech: ["Java", "React", "Python", "Gradle", "PostgreSQL"],
+      /**
+       * Replay of the radio interview. The MP3 is hosted outside the repo; its
+       * URL comes from NEXT_PUBLIC_EUROPE1_AUDIO_URL and the player is hidden
+       * when it is not set.
+       */
+      audio: {
+        title: "Europe 1 · La France bouge",
+        date: "2022-02-07",
+        durationSec: 2492,
+        copyright: "© Europe 1",
+        /** The original page; the replay there no longer plays. */
+        sourceUrl:
+          "https://www.europe1.fr/emissions/la-france-bouge/elle-accompagne-et-soutient-les-entreprises-annee-historique-pour-la-bpi-france-92193",
+      },
       press: {
         label: { fr: "Dans les médias", en: "In the press" },
         items: [

@@ -28,8 +28,8 @@ yarn-error.log*
 # local env files
 .env*.local
 
-# vercel
-.vercel
+# next export output (GitHub Pages)
+/out/
 
 # typescript
 *.tsbuildinfo
@@ -37,3 +37,5 @@ next-env.d.ts
 
 # ide
 .idea
+# Europe 1 interview MP3: hosted outside the repo, local copy only
+/public/audio/

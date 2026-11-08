@@ -9,6 +9,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { AudioPlayer } from "@/components/audio-player";
 import { CareerChart } from "@/components/career-chart";
 import { CommandPalette } from "@/components/command-palette";
 import { ConsoleGreeting, SOURCE_URL } from "@/components/console-greeting";
@@ -18,6 +19,7 @@ import { PrintButton } from "@/components/print-button";
 import { PrintResume } from "@/components/print-resume";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { VideoButton } from "@/components/video-button";
+import { EUROPE1_PEAKS } from "@/data/europe1-peaks";
 import { RESUME_DATA } from "@/data/resume-data";
 import {
   LANG_PATH,
@@ -31,6 +33,9 @@ import { BUILD_DATE, SITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const D = RESUME_DATA;
+
+/** Where the Europe 1 MP3 is hosted (kept out of the repo). Unset = no player. */
+const AUDIO_URL = process.env.NEXT_PUBLIC_EUROPE1_AUDIO_URL;
 
 function SectionTitle({
   index,
@@ -199,7 +204,7 @@ export function Resume({ lang }: { lang: Lang }) {
                     copiedLabel={ui.copied}
                   />
                   <a
-                    href="/vcard"
+                    href="/vcard.vcf"
                     aria-label={ui.saveContact}
                     title={ui.saveContact}
                     className="-m-1 inline-flex size-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground print:hidden"
@@ -399,6 +404,27 @@ export function Resume({ lang }: { lang: Lang }) {
                       ))}
                     </div>
 
+                    {"audio" in job && AUDIO_URL && (
+                      <AudioPlayer
+                        src={AUDIO_URL}
+                        peaks={EUROPE1_PEAKS}
+                        durationSec={job.audio.durationSec}
+                        title={job.audio.title}
+                        dateLabel={new Intl.DateTimeFormat(
+                          lang === "fr" ? "fr-FR" : "en-GB",
+                          { dateStyle: "long", timeZone: "UTC" },
+                        ).format(new Date(job.audio.date))}
+                        copyright={job.audio.copyright}
+                        sourceUrl={job.audio.sourceUrl}
+                        labels={{
+                          listen: ui.listen,
+                          pause: ui.pause,
+                          seek: ui.seek,
+                          originalPage: ui.originalPage,
+                        }}
+                      />
+                    )}
+
                     {"press" in job && (
                       <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs">
                         <span className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
@@ -556,9 +582,9 @@ export function Resume({ lang }: { lang: Lang }) {
                 {"{ }"} JSON
               </a>
               <a
-                href={lang === "fr" ? "/cv/fr" : "/cv"}
+                href={lang === "fr" ? "/cv-fr" : "/cv"}
                 className="transition-colors hover:text-primary"
-                title={`curl ${SITE_URL}${lang === "fr" ? "/cv/fr" : "/cv"}`}
+                title={`curl ${SITE_URL}${lang === "fr" ? "/cv-fr" : "/cv"}`}
               >
                 $ curl
               </a>

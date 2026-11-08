@@ -71,6 +71,10 @@ export const UI = {
     figuresCareer: "Parcours",
     figuresProduct: "Produits construits",
     closeVideo: "Fermer la vidéo",
+    listen: "Écouter l'interview",
+    pause: "Mettre en pause",
+    seek: "Position dans l'interview",
+    originalPage: "page d'origine",
   },
   en: {
     present: "Present",
@@ -110,5 +114,9 @@ export const UI = {
     figuresCareer: "Career",
     figuresProduct: "Products I built",
     closeVideo: "Close video",
+    listen: "Play the interview",
+    pause: "Pause",
+    seek: "Position in the interview",
+    originalPage: "original page",
   },
 } as const satisfies Record<Lang, Record<string, string>>;

@@ -6,7 +6,7 @@ import { toVCard } from "@/lib/resume-formats";
 // Built once at deploy time: a static file, no server needed.
 export const dynamic = "force-static";
 
-/** /vcard – contact card (.vcf) with photo, to save me in a phone's contacts. */
+/** /vcard.vcf – contact card (.vcf) with photo, to save me in a phone's contacts. */
 export async function GET() {
   const avatar = await readFile(join(process.cwd(), "public/avatar.jpg"));
   const fileName = `${RESUME_DATA.name.replace(/\s+/g, "-")}.vcf`;
