@@ -106,7 +106,7 @@ function runCommand(raw: string, lang: Lang): string[] | "clear" | "exit" {
         ...D.contact.social.map(
           (s) => `${s.name.toLowerCase().padEnd(10)}${s.url}`,
         ),
-        `vcard     ${typeof window === "undefined" ? "" : window.location.origin}/vcard`,
+        `vcard     ${typeof window === "undefined" ? "" : window.location.origin}/vcard.vcf`,
       ];
     case "sudo hire florian":
     case "sudo hire":
@@ -240,7 +240,7 @@ export function CommandPalette({ lang }: { lang: Lang }) {
         icon: UserPlusIcon,
         keywords: "vcard vcf contact phone",
         run: then(() => {
-          window.location.href = "/vcard";
+          window.location.href = "/vcard.vcf";
         }),
       },
       {
