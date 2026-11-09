@@ -10,6 +10,7 @@
  *        npm run render -- fr           (v1, one language)
  *        npm run render -- --v2         (v2 "IDE" version → resume-v2-<lang>.*)
  *        npm run render -- --v2 en
+ *        npm run render -- --v3         (v3 "IDE + trail" version → resume-v3-<lang>.*)
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync } from "node:fs";
@@ -23,13 +24,14 @@ mkdirSync(outDir, { recursive: true });
 mkdirSync(tmpDir, { recursive: true });
 
 const args = process.argv.slice(2);
-const v2 = args.includes("--v2");
+const version = args.includes("--v3") ? 3 : args.includes("--v2") ? 2 : 1;
 const rest = args.filter((a) => !a.startsWith("--"));
 const langs = rest.length ? rest : ["en", "fr"];
-const music = v2 ? "make-music-v2.mjs" : "make-music.mjs";
-const soundtrack = v2 ? "soundtrack-v2.wav" : "soundtrack.wav";
-// Poster: a frame that shows the name (v1 hero) or the typed florian.go (v2).
-const posterAt = v2 ? "7" : "10";
+const suffix = version === 1 ? "" : `-v${version}`;
+const music = `make-music${suffix}.mjs`;
+const soundtrack = `soundtrack${suffix}.wav`;
+// Poster: the name (v1 hero), the typed florian.go (v2), the summit of the ride (v3).
+const posterAt = { 1: "10", 2: "7", 3: "66.2" }[version];
 const run = (cmd, args) => execFileSync(cmd, args, { cwd: root, stdio: "inherit" });
 
 if (!existsSync(join(root, "public", soundtrack))) {
@@ -37,7 +39,7 @@ if (!existsSync(join(root, "public", soundtrack))) {
 }
 
 for (const lang of langs) {
-  const id = v2 ? `resume-v2-${lang}` : `resume-${lang}`;
+  const id = version === 1 ? `resume-${lang}` : `resume-v${version}-${lang}`;
   const raw = join(tmpDir, `raw-${id}.mp4`);
   run("npx", [
     "remotion", "render", "src/index.ts", id, raw,

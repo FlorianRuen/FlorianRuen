@@ -10,13 +10,14 @@ import {
   TerminalIcon,
 } from "lucide-react";
 import type React from "react";
+import { createContext, useContext } from "react";
 import { interpolate, random, useCurrentFrame } from "remotion";
 import { clamp } from "../components";
 import { MONO, SANS } from "../theme";
 import { bar, K, type SceneKey, span, W } from "./theme";
 
 /** What the IDE chrome shows for each scene. */
-const FILES: Record<SceneKey, { tab: string; path: string; lang: string; color: string }> = {
+const FILES: Record<string, { tab: string; path: string; lang: string; color: string }> = {
   editor: { tab: "florian.go", path: "cmd/florian/florian.go", lang: "Go", color: K.cyan },
   gitlog: { tab: "git log", path: "~/florian-ruen", lang: "Git", color: K.number },
   pipeline: { tab: "pipeline #2026", path: ".ci/pipeline.yml", lang: "CI", color: K.green },
@@ -24,6 +25,7 @@ const FILES: Record<SceneKey, { tab: string; path: string; lang: string; color: 
   cluster: { tab: "cluster: prod", path: "k8s://prod/florian", lang: "K8s", color: K.blue },
   dashboard: { tab: "dashboard", path: "grafana://florian/overview", lang: "Grafana", color: K.yellow },
   sudo: { tab: "zsh", path: "~", lang: "zsh", color: K.fg },
+  exit: { tab: "zsh", path: "~", lang: "zsh", color: K.fg },
   outro: { tab: "README.md", path: "README.md", lang: "Markdown", color: K.fg },
 };
 
@@ -42,10 +44,25 @@ const TREE: { name: string; scene?: SceneKey; depth: number; dir?: boolean }[] =
   { name: "README.md", depth: 1, scene: "outro" },
 ];
 
-export function sceneAt(frame: number): SceneKey {
-  const order: SceneKey[] = ["editor", "gitlog", "pipeline", "apply", "cluster", "dashboard", "sudo", "outro"];
-  let cur: SceneKey = "editor";
-  for (const k of order) if (frame >= span(k).from) cur = k;
+/**
+ * Which scenes play when, and during which ones the IDE is off screen (it
+ * flies away when one starts and flies back when it ends). Defaults to v2.
+ */
+export type IdeTimeline = {
+  order: string[];
+  span: (key: string) => { from: number; duration: number };
+  offscreen: string[];
+};
+const V2_TIMELINE: IdeTimeline = {
+  order: ["editor", "gitlog", "pipeline", "apply", "cluster", "dashboard", "sudo", "outro"],
+  span: (k) => span(k as SceneKey),
+  offscreen: ["outro"],
+};
+export const IdeTimelineContext = createContext<IdeTimeline>(V2_TIMELINE);
+
+function sceneAt(frame: number, tl: IdeTimeline): string {
+  let cur = tl.order[0];
+  for (const k of tl.order) if (frame >= tl.span(k).from) cur = k;
   return cur;
 }
 
@@ -55,15 +72,21 @@ export function sceneAt(frame: number): SceneKey {
  */
 export const Ide: React.FC<{ children: React.ReactNode; status?: string }> = ({ children, status }) => {
   const frame = useCurrentFrame();
-  const scene = sceneAt(frame);
-  const file = FILES[scene];
-  const start = span(scene).from;
+  const tl = useContext(IdeTimelineContext);
+  const scene = sceneAt(frame, tl);
+  const file = FILES[scene] ?? FILES.sudo;
+  const start = tl.span(scene).from;
 
   // 3D fly-in over the first bar
-  const fly = interpolate(frame, [0, bar(1)], [0, 1], { ...clamp, easing: (t) => 1 - (1 - t) ** 3 });
-  // Outro: the window tilts back and recedes
-  const outroStart = span("outro").from;
-  const away = interpolate(frame, [outroStart, outroStart + 24], [0, 1], { ...clamp, easing: (t) => t * t });
+  let fly = interpolate(frame, [0, bar(1)], [0, 1], { ...clamp, easing: (t) => 1 - (1 - t) ** 3 });
+  // Off-screen scenes: the window tilts back and recedes, then flies back in after
+  let away = 0;
+  for (const k of tl.offscreen) {
+    const { from, duration } = tl.span(k);
+    const end = from + duration;
+    if (frame >= from && frame < end) away = interpolate(frame, [from, from + 24], [0, 1], { ...clamp, easing: (t) => t * t });
+    if (frame >= end) fly = Math.min(fly, interpolate(frame, [end, end + 18], [0, 1], { ...clamp, easing: (t) => 1 - (1 - t) ** 3 }));
+  }
   // Small punch on every cut
   const punch = interpolate(frame - start, [0, 10], [1, 0], clamp);
 
