@@ -29,8 +29,9 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # MP3 of the Europe 1 interview, hosted outside the repo.
-          # Settings > Secrets and variables > Actions > Variables. Unset = no player.
+          # Optional: serve the Europe 1 interview MP3 from another host.
+          # Settings > Secrets and variables > Actions > Variables.
+          # Unset = the MP3 bundled in public/ is used.
           NEXT_PUBLIC_EUROPE1_AUDIO_URL: ${{ vars.EUROPE1_AUDIO_URL }}
       - uses: actions/upload-pages-artifact@v3
         with:
