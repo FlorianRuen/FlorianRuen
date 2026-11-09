@@ -75,9 +75,7 @@ export function RootLayout({
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: constant script, must run before paint */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body className="font-sans antialiased">
-        {children}
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }
