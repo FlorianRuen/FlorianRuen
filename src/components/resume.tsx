@@ -34,8 +34,11 @@ import { cn } from "@/lib/utils";
 
 const D = RESUME_DATA;
 
-/** Where the Europe 1 MP3 is hosted (kept out of the repo). Unset = no player. */
-const AUDIO_URL = process.env.NEXT_PUBLIC_EUROPE1_AUDIO_URL;
+/**
+ * Optional override for where the Europe 1 MP3 is served from; by default the
+ * copy in public/audio. `||` because an unset GitHub variable arrives as "".
+ */
+const AUDIO_URL_OVERRIDE = process.env.NEXT_PUBLIC_EUROPE1_AUDIO_URL || null;
 
 function SectionTitle({
   index,
@@ -404,9 +407,9 @@ export function Resume({ lang }: { lang: Lang }) {
                       ))}
                     </div>
 
-                    {"audio" in job && AUDIO_URL && (
+                    {"audio" in job && (
                       <AudioPlayer
-                        src={AUDIO_URL}
+                        src={AUDIO_URL_OVERRIDE ?? job.audio.src}
                         peaks={EUROPE1_PEAKS}
                         durationSec={job.audio.durationSec}
                         title={job.audio.title}

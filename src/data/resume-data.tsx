@@ -221,11 +221,11 @@ export const RESUME_DATA = {
       ],
       tech: ["Java", "React", "Python", "Gradle", "PostgreSQL"],
       /**
-       * Replay of the radio interview. The MP3 is hosted outside the repo; its
-       * URL comes from NEXT_PUBLIC_EUROPE1_AUDIO_URL and the player is hidden
-       * when it is not set.
+       * Replay of the radio interview (MP3 in public/audio, 64 kbps mono).
+       * NEXT_PUBLIC_EUROPE1_AUDIO_URL can point the player to another host.
        */
       audio: {
+        src: "/audio/europe1-la-france-bouge-2022-02-07.mp3",
         title: "Europe 1 · La France bouge",
         date: "2022-02-07",
         durationSec: 2492,
