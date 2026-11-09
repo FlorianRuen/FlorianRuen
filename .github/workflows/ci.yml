@@ -1,0 +1,44 @@
+# Quality gate for every pull request (Renovate PRs included: they only
+# auto-merge when this passes). Mark "checks" and "dependency-review" as
+# required status checks on main.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Lint (Biome)
+        run: npx biome ci .
+      - name: Format (Prettier)
+        run: npx prettier --check .
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Build static export
+        run: npm run build
+
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
