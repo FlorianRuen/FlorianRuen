@@ -237,7 +237,7 @@ export const RESUME_DATA = {
       press: {
         label: { fr: "Dans les médias", en: "In the press" },
         items: [
-          { name: "Europe 1 · La France bouge", url: null },
+          { name: "Europe 1 · La France bouge", url: null, replay: true },
           {
             name: "Ouest-France",
             url: "https://www.ouest-france.fr/economie/entreprises/entreprise-eyes-r-la-startup-francaise-leader-de-la-prevention-des-risques-au-travail-7608639",
