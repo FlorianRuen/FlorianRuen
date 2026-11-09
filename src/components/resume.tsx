@@ -9,12 +9,12 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { AudioPlayer } from "@/components/audio-player";
 import { CareerChart } from "@/components/career-chart";
 import { CommandPalette } from "@/components/command-palette";
 import { ConsoleGreeting, SOURCE_URL } from "@/components/console-greeting";
 import { CopyButton } from "@/components/copy-button";
 import { LangHint } from "@/components/lang-hint";
+import { PressList } from "@/components/press-list";
 import { PrintButton } from "@/components/print-button";
 import { PrintResume } from "@/components/print-resume";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -407,53 +407,34 @@ export function Resume({ lang }: { lang: Lang }) {
                       ))}
                     </div>
 
-                    {"audio" in job && (
-                      <AudioPlayer
-                        src={AUDIO_URL_OVERRIDE ?? job.audio.src}
-                        peaks={EUROPE1_PEAKS}
-                        durationSec={job.audio.durationSec}
-                        title={job.audio.title}
-                        dateLabel={new Intl.DateTimeFormat(
-                          lang === "fr" ? "fr-FR" : "en-GB",
-                          { dateStyle: "long", timeZone: "UTC" },
-                        ).format(new Date(job.audio.date))}
-                        copyright={job.audio.copyright}
-                        sourceUrl={job.audio.sourceUrl}
-                        labels={{
-                          listen: ui.listen,
-                          pause: ui.pause,
-                          seek: ui.seek,
-                          originalPage: ui.originalPage,
-                        }}
-                      />
-                    )}
-
                     {"press" in job && (
-                      <div className="mt-3 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs">
-                        <span className="font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
-                          {t(job.press.label, lang)}
-                        </span>
-                        {job.press.items.map((item) =>
-                          item.url ? (
-                            <a
-                              key={item.name}
-                              href={item.url}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-foreground/80 underline decoration-border underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
-                            >
-                              {item.name}
-                            </a>
-                          ) : (
-                            <span
-                              key={item.name}
-                              className="text-foreground/80"
-                            >
-                              {item.name}
-                            </span>
-                          ),
-                        )}
-                      </div>
+                      <PressList
+                        label={t(job.press.label, lang)}
+                        items={job.press.items}
+                        player={
+                          "audio" in job
+                            ? {
+                                src: AUDIO_URL_OVERRIDE ?? job.audio.src,
+                                peaks: EUROPE1_PEAKS,
+                                durationSec: job.audio.durationSec,
+                                durationLabel: `${Math.floor(job.audio.durationSec / 60)} min`,
+                                title: job.audio.title,
+                                dateLabel: new Intl.DateTimeFormat(
+                                  lang === "fr" ? "fr-FR" : "en-GB",
+                                  { dateStyle: "long", timeZone: "UTC" },
+                                ).format(new Date(job.audio.date)),
+                                copyright: job.audio.copyright,
+                                sourceUrl: job.audio.sourceUrl,
+                                labels: {
+                                  listen: ui.listen,
+                                  pause: ui.pause,
+                                  seek: ui.seek,
+                                  originalPage: ui.originalPage,
+                                },
+                              }
+                            : undefined
+                        }
+                      />
                     )}
                   </li>
                 );

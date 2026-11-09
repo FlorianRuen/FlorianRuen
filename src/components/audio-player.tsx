@@ -1,7 +1,7 @@
 "use client";
 
 import { PauseIcon, PlayIcon } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function formatTime(sec: number): string {
   const s = Math.floor(sec);
@@ -13,8 +13,12 @@ function formatTime(sec: number): string {
  * `peaks`, so nothing is downloaded until the visitor presses play
  * (preload="none"). Seeking uses an invisible native range input laid over
  * the waves, which gives keyboard and screen-reader support for free.
+ * With `autoPlay`, playback starts on mount: meant for a player the visitor
+ * just opened with a click, so the browser allows it.
  */
 export function AudioPlayer({
+  id,
+  autoPlay = false,
   src,
   peaks,
   durationSec,
@@ -24,6 +28,8 @@ export function AudioPlayer({
   sourceUrl,
   labels,
 }: {
+  id?: string;
+  autoPlay?: boolean;
   src: string;
   peaks: readonly number[];
   durationSec: number;
@@ -37,6 +43,10 @@ export function AudioPlayer({
   const [playing, setPlaying] = useState(false);
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(durationSec);
+
+  useEffect(() => {
+    if (autoPlay) audioRef.current?.play().catch(() => setPlaying(false));
+  }, [autoPlay]);
 
   const progress = duration > 0 ? (current / duration) * 100 : 0;
 
@@ -73,7 +83,10 @@ export function AudioPlayer({
   );
 
   return (
-    <figure className="mt-3 rounded-lg border border-border bg-muted/40 p-3 print:hidden">
+    <figure
+      id={id}
+      className="mt-3 rounded-lg border border-border bg-muted/40 p-3 print:hidden"
+    >
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -91,7 +104,9 @@ export function AudioPlayer({
         <div className="relative h-9 min-w-0 flex-1 rounded focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background">
           {bars("text-muted-foreground/30")}
           {/* Played part: same bars in the accent colour, clipped to the progress. */}
-          {bars("text-primary", { clipPath: `inset(0 ${100 - progress}% 0 0)` })}
+          {bars("text-primary", {
+            clipPath: `inset(0 ${100 - progress}% 0 0)`,
+          })}
           <input
             type="range"
             min={0}
