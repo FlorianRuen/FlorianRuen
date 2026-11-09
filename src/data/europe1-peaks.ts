@@ -1,7 +1,7 @@
 /**
  * Waveform of the Europe 1 interview: 80 loudness values (RMS, scaled 18–100)
  * computed from the MP3 with ffmpeg, so the player can draw the waves without
- * downloading the audio. The MP3 itself is not in the repo, see AUDIO_URL.
+ * downloading the audio (public/audio/europe1-la-france-bouge-2022-02-07.mp3).
  */
 export const EUROPE1_PEAKS = [
   94, 94, 91, 70, 82, 68, 67, 64, 63, 76, 51, 64, 68, 68, 84, 75, 77, 71, 55,
