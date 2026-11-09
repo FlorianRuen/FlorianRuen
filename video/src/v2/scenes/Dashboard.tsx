@@ -64,7 +64,7 @@ function seriesPath(w: number, h: number, progress: number) {
 }
 
 /** Bars 25-30: the career as an observability dashboard. */
-export const Dashboard: React.FC<{ copy: Copy2; lang: Lang }> = ({ copy, lang }) => {
+export const Dashboard: React.FC<{ copy: Copy2; lang: Lang; showInterests?: boolean }> = ({ copy, lang, showInterests = true }) => {
   const frame = useCurrentFrame();
   const press = D.work.find((w) => "press" in w);
   const pressCount = press && "press" in press ? press.press.items.length : 0;
@@ -182,6 +182,7 @@ export const Dashboard: React.FC<{ copy: Copy2; lang: Lang }> = ({ copy, lang })
               </div>
             ))}
           </Panel>
+          {showInterests && (
           <Panel title={copy.interestsPanel} at={beat(9)}>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {D.interests.map((i) => (
@@ -191,6 +192,7 @@ export const Dashboard: React.FC<{ copy: Copy2; lang: Lang }> = ({ copy, lang })
               ))}
             </div>
           </Panel>
+          )}
         </div>
       </div>
     </div>

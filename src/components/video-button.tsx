@@ -7,10 +7,10 @@ import { Button } from "./ui/button";
 
 /**
  * Which rendered version to play (files in public/video):
- * "resume-v2" = IDE / CI / Kubernetes take, "resume" = v1 kinetic typography.
- * Switch back to "resume" to roll back.
+ * "resume-v3" = IDE + mountain-bike "who I am" chapter, "resume-v2" = IDE / CI /
+ * Kubernetes take, "resume" = v1 kinetic typography. Switch back to roll back.
  */
-const VIDEO = "resume-v2";
+const VIDEO = "resume-v3";
 
 /**
  * "Watch the 1-min video" button: opens the animated resume (made with

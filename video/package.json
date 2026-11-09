@@ -8,6 +8,8 @@
     "render": "node scripts/render.mjs",
     "render:v2": "node scripts/render.mjs --v2",
     "music:v2": "node scripts/make-music-v2.mjs",
+    "render:v3": "node scripts/render.mjs --v3",
+    "music:v3": "node scripts/make-music-v3.mjs",
     "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {

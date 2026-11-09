@@ -26,7 +26,7 @@ const IN_IDE: [SceneKey, React.FC<SceneProps>][] = [
 ];
 
 /** Dark backdrop behind the IDE: dot grid drifting slowly + glow. */
-const Backdrop: React.FC<{ frame: number }> = ({ frame }) => (
+export const Backdrop: React.FC<{ frame: number }> = ({ frame }) => (
   <AbsoluteFill style={{ background: K.page, overflow: "hidden" }}>
     <div
       style={{

@@ -4,6 +4,8 @@ import { ResumeVideo } from "./ResumeVideo";
 import { FPS, TOTAL_FRAMES } from "./theme";
 import { ResumeVideoV2 } from "./v2/ResumeVideoV2";
 import { TOTAL_FRAMES as TOTAL_FRAMES_V2 } from "./v2/theme";
+import { ResumeVideoV3 } from "./v3/ResumeVideoV3";
+import { TOTAL_FRAMES as TOTAL_FRAMES_V3 } from "./v3/theme";
 
 const LANGS = ["en", "fr"] as const;
 
@@ -29,6 +31,19 @@ export const Root: React.FC = () => (
         id={`resume-v2-${lang}`}
         component={ResumeVideoV2}
         durationInFrames={TOTAL_FRAMES_V2}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{ lang }}
+      />
+    ))}
+    {/* v3: what I know (IDE), then who I am (mountain-bike trail) */}
+    {LANGS.map((lang) => (
+      <Composition
+        key={`v3-${lang}`}
+        id={`resume-v3-${lang}`}
+        component={ResumeVideoV3}
+        durationInFrames={TOTAL_FRAMES_V3}
         fps={FPS}
         width={1920}
         height={1080}
