@@ -248,6 +248,8 @@ export function Resume({ lang }: { lang: Lang }) {
                   lang={lang}
                   label={ui.watchVideo}
                   closeLabel={ui.closeVideo}
+                  otherLabel={ui.otherVideo}
+                  versionLabel={ui.videoVersion}
                 />
                 {D.contact.social.map((social) => (
                   <Button key={social.name} variant="outline" size="sm" asChild>

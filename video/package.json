@@ -10,6 +10,10 @@
     "music:v2": "node scripts/make-music-v2.mjs",
     "render:v3": "node scripts/render.mjs --v3",
     "music:v3": "node scripts/make-music-v3.mjs",
+    "render:v4": "node scripts/render.mjs --v4",
+    "music:v4": "node scripts/make-music-v4.mjs",
+    "render:v5": "node scripts/render.mjs --v5",
+    "music:v5": "node scripts/make-music-v5.mjs",
     "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {
